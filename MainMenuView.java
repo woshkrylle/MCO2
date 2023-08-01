@@ -23,7 +23,11 @@ public class MainMenuView {
         this.createPanel = InitializeCreatePanel();
         this.itemPanel = InitializeItemPanel();
 
-        controller.getFrame().add(mainPanel);
+        controller.getFrame().add(mainPanel, "Main Card");
+        controller.getFrame().add(createPanel, "Create Card");
+        controller.getFrame().add(itemPanel, "Item Card");
+        controller.getCardLayout().show(controller.getFrame().getContentPane(), "Main Card");
+
     }
 
     /**
@@ -47,18 +51,10 @@ public class MainMenuView {
 
                 if(choice == 0){
                     controller.createRegular();
-                    controller.getFrame().remove(mainPanel);
-                    controller.getFrame().add(createPanel);
-                    controller.getFrame().add(itemPanel);
-                    controller.getFrame().revalidate();
-                    controller.getFrame().repaint();
+                    controller.getCardLayout().show(controller.getFrame().getContentPane(), "Create Card");
                 }else if (choice == 1){
                     controller.createSpecial();
-                    controller.getFrame().remove(mainPanel);
-                    controller.getFrame().add(createPanel);
-                    controller.getFrame().add(itemPanel);
-                    controller.getFrame().revalidate();
-                    controller.getFrame().repaint();
+                    controller.getCardLayout().show(controller.getFrame().getContentPane(), "Create Card");
                 }
                 createVM();
             }
@@ -98,11 +94,10 @@ public class MainMenuView {
      * 
      */
     private JPanel InitializeCreatePanel(){
-        JPanel panel = new JPanel(new GridBagLayout());
+        JPanel panel = new JPanel(new FlowLayout());
         
         JTextField itemName = new JTextField("Name");
         itemName.setColumns(15);
-        panel.add(itemName);
 
         JButton submitButton = new JButton("Add Item");
         submitButton.setFocusable(false);
@@ -110,12 +105,13 @@ public class MainMenuView {
             @Override
             public void actionPerformed(ActionEvent e){
                 String name = itemName.getText();
+                
                 if(!tempItemList.contains(name)){
                     tempItemCount++;
                     ArrayList<Item> itemType = new ArrayList<>();
                     tempInventory.add(itemType);
                     tempItemList.add(name);
-                    
+                    controller.getCardLayout().show(controller.getFrame().getContentPane(), "Item Card");
                 }
 
                 //pass the name to the controller by calling a controller method
@@ -127,7 +123,6 @@ public class MainMenuView {
         backButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                createPanel.setVisible(false);
                 
             }
         });
@@ -135,10 +130,10 @@ public class MainMenuView {
         JButton proceedButton = new JButton("Proceed");
         proceedButton.setFocusable(false);
         
-
+        JLabel lbl = new JLabel();
         
         
-        
+        panel.add(itemName);
         panel.add(submitButton);
         panel.add(backButton);
 
@@ -149,26 +144,26 @@ public class MainMenuView {
         JPanel panel = new JPanel(new GridLayout(4,1));
 
         JPanel pricePanel = new JPanel(new BorderLayout());
-        JLabel priceLabel = new JLabel("Price:"):
-        pricePanel.add(priceLabel, BorderLayout.WEST)
+        JLabel priceLabel = new JLabel("Price:");
+        pricePanel.add(priceLabel, BorderLayout.WEST);
         JTextField priceTextField = new JTextField();
         priceTextField.setColumns(15);
         pricePanel.add(priceTextField, BorderLayout.EAST);
         
         
         JPanel caloriePanel = new JPanel(new BorderLayout());
-        JLabel calorieLabel = new JLabel("Calories:"):
-        caloriePanel.add(calorieLabel, BorderLayout.WEST)
+        JLabel calorieLabel = new JLabel("Calories:");
+        caloriePanel.add(calorieLabel, BorderLayout.WEST);
         JTextField calorieTextField = new JTextField();
         calorieTextField.setColumns(15);
-        caloriePanel.add(calorieTextField, BorderLayout.EAST)
+        caloriePanel.add(calorieTextField, BorderLayout.EAST);
 
         JPanel processPanel = new JPanel(new BorderLayout());
-        JLabel processLabel = new JLabel("Process:"):
-        processPanel.add(processLabel, BorderLayout.WEST)
+        JLabel processLabel = new JLabel("Process:");
+        processPanel.add(processLabel, BorderLayout.WEST);
         JTextField processTextField = new JTextField();
         processTextField.setColumns(15);
-        processPanel.add(processTextField, BorderLayout.EAST)
+        processPanel.add(processTextField, BorderLayout.EAST);
 
 
         JButton submitButton = new JButton("Submit");
@@ -179,6 +174,8 @@ public class MainMenuView {
                 int calories = Integer.parseInt(calorieTextField.getText());
                 String process = processTextField.getText();
                 // controller.addItem(price, calories, process); <- WALA PA TAYO LOGIC FOR THIS
+
+                controller.getCardLayout().show(controller.getFrame().getContentPane(), "Create Card");
             }
         });
 

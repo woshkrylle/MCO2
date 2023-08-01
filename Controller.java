@@ -1,5 +1,5 @@
 import java.awt.*;
-
+import java.util.*;
 import javax.swing.*;
 
 public class Controller {
@@ -9,10 +9,12 @@ public class Controller {
     private VMModel vmModel;
     private RegularVM vendingMachine;
     private JFrame frame;
+    private CardLayout cardLayout;
 
     public Controller(){
         this.frame = new JFrame("Tite");
-        this.frame.setLayout(new GridLayout(1, 1));
+        this.frame.setLayout(new CardLayout());
+        this.cardLayout = (CardLayout) frame.getContentPane().getLayout();
         this.frame.setResizable(false);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setSize(480, 360);
@@ -38,12 +40,10 @@ public class Controller {
 
     public void createRegular(){
         this.vendingMachine = new RegularVM(this);
-        this.frame.setSize(1280, 720);
     }
 
     public void createSpecial(){
         this.vendingMachine = new SpecialVM(this);
-        this.frame.setSize(1280, 720);
         
     }
 
@@ -70,9 +70,6 @@ public class Controller {
         JOptionPane.showMessageDialog(null, message, title, JOptionPane.WARNING_MESSAGE);
     }
 
-    public JFrame getFrame(){
-        return this.frame;
-    }
 
     public void addPanel(JPanel panel){
         this.frame.add(panel);
@@ -83,9 +80,16 @@ public class Controller {
      * main menu and stores them to the model.
      * @param ArrayList<ArrayList<Items>>
      */
-    public void saveInventory(ArrayList<ArrayList<Items>> Inventory){
+    public void saveInventory(ArrayList<ArrayList<Item>> Inventory){
         
     }
 
+    public JFrame getFrame(){
+        return this.frame;
+    }
+
+    public CardLayout getCardLayout(){
+        return this.cardLayout;
+    }
 }
 
