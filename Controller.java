@@ -78,9 +78,13 @@ public class Controller {
         this.frame.add(panel);
     }
 
-    public void addItem(int price, int calories, String process){
+    /**
+     * Takes the collection of items initialized in the
+     * main menu and stores them to the model.
+     * @param ArrayList<ArrayList<Items>>
+     */
+    public void saveInventory(ArrayList<ArrayList<Items>> Inventory){
         
-        vendingMachine.addItem();
     }
 
 }

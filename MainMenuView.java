@@ -7,6 +7,9 @@ import java.util.ArrayList;
 
 public class MainMenuView {
     private JPanel mainPanel, createPanel, itemPanel;
+    private ArrayList<String> tempItemList = new ArrayList<>();
+    private ArrayList<ArrayList<Item>> tempInventory = new ArrayList<>();
+    private int tempItemCount = 0;
     private Controller controller;
 
     /**
@@ -16,8 +19,9 @@ public class MainMenuView {
     public MainMenuView(Controller controller){
         this.controller = controller;
 
-        mainPanel = InitializeMainPanel();
-        createPanel = InitializeCreatePanel();
+        this.mainPanel = InitializeMainPanel();
+        this.createPanel = InitializeCreatePanel();
+        this.itemPanel = InitializeItemPanel();
 
         controller.getFrame().add(mainPanel);
     }
@@ -45,12 +49,14 @@ public class MainMenuView {
                     controller.createRegular();
                     controller.getFrame().remove(mainPanel);
                     controller.getFrame().add(createPanel);
+                    controller.getFrame().add(itemPanel);
                     controller.getFrame().revalidate();
                     controller.getFrame().repaint();
                 }else if (choice == 1){
                     controller.createSpecial();
                     controller.getFrame().remove(mainPanel);
                     controller.getFrame().add(createPanel);
+                    controller.getFrame().add(itemPanel);
                     controller.getFrame().revalidate();
                     controller.getFrame().repaint();
                 }
@@ -92,7 +98,6 @@ public class MainMenuView {
      * 
      */
     private JPanel InitializeCreatePanel(){
-        ArrayList<Item> itemList = new ArrayList<>();
         JPanel panel = new JPanel(new GridBagLayout());
         
         JTextField itemName = new JTextField("Name");
@@ -104,7 +109,15 @@ public class MainMenuView {
         submitButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                itemName.getText();
+                String name = itemName.getText();
+                if(!tempItemList.contains(name)){
+                    tempItemCount++;
+                    ArrayList<Item> itemType = new ArrayList<>();
+                    tempInventory.add(itemType);
+                    tempItemList.add(name);
+                    
+                }
+
                 //pass the name to the controller by calling a controller method
             }
         });
@@ -132,8 +145,8 @@ public class MainMenuView {
         return panel;
     }
 
-    private void InitializeItemPanel(){
-        this.itemPanel = new JPanel(new GridLayout(4,1));
+    private JPanel InitializeItemPanel(){
+        JPanel panel = new JPanel(new GridLayout(4,1));
 
         JPanel pricePanel = new JPanel(new BorderLayout());
         JLabel priceLabel = new JLabel("Price:"):
@@ -168,6 +181,13 @@ public class MainMenuView {
                 // controller.addItem(price, calories, process); <- WALA PA TAYO LOGIC FOR THIS
             }
         });
+
+        panel.add(pricePanel);
+        panel.add(caloriePanel);
+        panel.add(processPanel);
+        panel.add(submitButton);
+
+        return panel;
     }
 
     /**
