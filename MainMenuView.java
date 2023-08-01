@@ -174,7 +174,7 @@ public class MainMenuView {
                 int price = Integer.parseInt(priceTextField.getText());
                 int calories = Integer.parseInt(calorieTextField.getText());
                 String process = processTextField.getText();
-                // controller.addItem(price, calories, process); <- WALA PA TAYO LOGIC FOR THIS
+                
 
                 controller.getCardLayout().show(controller.getFrame().getContentPane(), "Create Card");
             }

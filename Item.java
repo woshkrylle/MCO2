@@ -11,13 +11,12 @@ public class Item {
     /**
     * constructor Item() helps in assigning the values for the particular 
     * instance of this class in an object, it also vlidates the input for the number of stocks
-    * @param n stores the name
-    * @param p stores the price
-    * @param q stores the quantity
-    * @param c stores the calories
+    * @param name stores the name
+    * @param price stores the price
+    * @param calories stores the calories
     *
     */
-    public Item(String n, int p, int q, int c){
+    public Item(String n, int p, int c){
         this.name = n;
         this.price = p;
         if(quantity>10) this.quantity = 10;
