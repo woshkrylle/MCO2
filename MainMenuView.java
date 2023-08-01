@@ -135,6 +135,10 @@ public class MainMenuView {
         return panel;
     }
 
+    private void InitializeItemPanel(){
+        this.itemPanel = new JPanel();
+    }
+
     /**
      * 
      */

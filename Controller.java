@@ -11,7 +11,7 @@ public class Controller {
     private JFrame frame;
 
     public Controller(){
-        this.frame = new JFrame("Vending Machine Factory");
+        this.frame = new JFrame("Tite");
         this.frame.setLayout(new GridLayout(1, 1));
         this.frame.setResizable(false);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
