@@ -1,6 +1,6 @@
 import javax.swing.*;
 import javax.swing.text.Style;
-//test if na push
+//test if eto nga
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -56,7 +56,6 @@ public class MainMenuView {
                     controller.createSpecial();
                     controller.getCardLayout().show(controller.getFrame().getContentPane(), "Create Card");
                 }
-                createVM();
             }
         });
 
@@ -107,7 +106,9 @@ public class MainMenuView {
                 String name = itemName.getText();
                 
                 if(!tempItemList.contains(name)){
+                    System.out.println(tempItemCount);
                     tempItemCount++;
+                    System.out.println(tempItemCount);
                     ArrayList<Item> itemType = new ArrayList<>();
                     tempInventory.add(itemType);
                     tempItemList.add(name);
@@ -193,10 +194,5 @@ public class MainMenuView {
     public void Open(){
     }
 
-    /**
-     * 
-     */
-    public void createVM(){
-
-    }
+    
 }
