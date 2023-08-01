@@ -12,7 +12,7 @@ public class Controller {
     private CardLayout cardLayout;
 
     public Controller(){
-        this.frame = new JFrame("Tite");
+        this.frame = new JFrame("Vending Machine Factory");
         this.frame.setLayout(new CardLayout());
         this.cardLayout = (CardLayout) frame.getContentPane().getLayout();
         this.frame.setResizable(false);

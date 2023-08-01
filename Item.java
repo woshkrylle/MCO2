@@ -5,8 +5,9 @@
 * @version 1.1
 */
 public class Item {
-    private String name;
+    private String name, process;
     private int price, calories, quantity;
+    private boolean independence;
 
     /**
     * constructor Item() helps in assigning the values for the particular 
@@ -14,14 +15,15 @@ public class Item {
     * @param name stores the name
     * @param price stores the price
     * @param calories stores the calories
-    *
+    * @param process stores the process that the item goes through (for special vending machines)
+    * @param independence stores whether the item is standalone or not
     */
-    public Item(String n, int p, int c){
-        this.name = n;
-        this.price = p;
-        if(quantity>10) this.quantity = 10;
-        else this.quantity = q;
-        this.calories = c;
+    public Item(String name, int price, int calories, String process, boolean independence){
+        this.name = name;
+        this.price = price;
+        this.calories = calories;
+        this.independence = independence;
+        this.process= process;
     }
 
     /**
@@ -57,6 +59,22 @@ public class Item {
     }
 
 /**
+*	getIndependence() is a getter for the independence of the item
+*	@return true or false
+*/
+public boolean getIndependence(){
+    return this.independence;
+}
+
+/**
+*	getProcess() is a getter for the independence of the item
+*	@return string of process should the product be combined with others
+*/
+public String getProcess(){
+    return this.process;
+}
+
+/**
 *	setPrice() sets the price for this particular item
 *	@param n price of the item
 */
@@ -72,3 +90,5 @@ public class Item {
         this.quantity = n;
     }
 }
+
+
