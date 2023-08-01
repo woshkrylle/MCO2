@@ -78,5 +78,10 @@ public class Controller {
         this.frame.add(panel);
     }
 
+    public void addItem(int price, int calories, String process){
+        
+        vendingMachine.addItem();
+    }
+
 }
 
