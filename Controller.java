@@ -110,7 +110,8 @@ public class Controller {
     }
 
     /**
-     * This adds a new Item to the inventory
+     * This adds a new Item to the inventory, which is a 2d array of items where each new addition takes up
+     * a new row upon being unique, and takes up the same row if duplicated.
      * @param price
      * @param calories
      * @param process
@@ -124,6 +125,12 @@ public class Controller {
         vmModel.getInventory().add(inventoryRow);
     }
 
+
+    /**
+     * getSlotCount gets the size of the item list as shown in the vending machine model,
+     * essentially serving as a getter method for the numbe rof unique items sold in the vending machine
+     * @return 
+     */
     public int getSlotCount(){
         return vmModel.getItemList().size();
     }
