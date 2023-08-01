@@ -180,7 +180,7 @@ public class MainMenuView {
                 int price = Integer.parseInt(priceTextField.getText());
                 int calories = Integer.parseInt(calorieTextField.getText());
                 String process = processTextField.getText();
-                boolean independence = 
+                boolean independence = Boolean.parseBoolean(independenceTextField.getText());
 
                 controller.getCardLayout().show(controller.getFrame().getContentPane(), "Create Card");
             }
