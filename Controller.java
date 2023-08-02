@@ -290,6 +290,14 @@ public class Controller {
         JOptionPane.showMessageDialog(null, msg,
                                 "Change", JOptionPane.INFORMATION_MESSAGE);
     }
+
+    public void addToCart(int index){
+        Item item = vendingMachine.getInventory().get(index).get(0);
+        if(vendingMachine.getInventory().get(index).size()>0){
+            ((SpecialVMModel)vendingMachine).addToCart(item);
+            removeItem(index);
+        }
+    }
 }
 
 

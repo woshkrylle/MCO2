@@ -8,7 +8,7 @@ import java.util.*;
 */
 public class CustomItem {
     private ArrayList<Item> cart = new ArrayList<>();
-    private int itemCount = 0, priceTotal = 0, caloriesTotal = 0, paymentTotal = 0;
+    private int itemCount = 0, priceTotal = 0, caloriesTotal = 0;
 /**
 *	addItem() adds the item to the ArrayList of type Item in the class
 *	@param item this is the item to be added on the array.
@@ -33,22 +33,6 @@ public class CustomItem {
         return null;
     }
 
-    /**
-*	addPaymentTotal() increments the amount specified to the total 
-*	payment in this transaction
-*	@param amount money added to payment/credit
-*/
-    public void addPaymentTotal(int amount){
-        this.paymentTotal += amount;
-    }
-/**
-*	setPaymentTotal() explicity states and assigns the total amount 
-*	of credits in this transaction
-*	@param amount actual credit/total payment
-*/
-    public void setPaymentTotal(int amount){
-        this.paymentTotal = amount;
-    }   
 /**
 *	getCart() is a getter function for the Item ArrayList named cart
 *	@return cart transaction within this instance
@@ -71,17 +55,10 @@ public class CustomItem {
         return this.priceTotal;
     }
 /**
-*	getPriceTotal() is a getter for the total calories
+*	getCaloriesTotal() is a getter for the total calories
 *	@return caloriesTotal calories within this instance
 */
     public int getCaloriesTotal(){
         return this.caloriesTotal;
-    }
-/**
-*	getPriceTotal() is a getter for the total payment/credit
-*	@return totalPayment credits stored within this instance
-*/
-    public int getPaymentTotal(){
-        return this.paymentTotal;
     }
 }

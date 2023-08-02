@@ -4,18 +4,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
+
 public class SpecialVMView {
-    private JPanel specialPanel, basePanel, addOnPanel, processPanel;
+    private JPanel specialPanel, basePanel, processPanel;
     private ArrayList<JButton> buttonList = new ArrayList<>();
     private ArrayList<JLabel> labelList = new ArrayList<>();
+    ArrayList<JButton> customButtons = new ArrayList<>();
     private Controller controller;
 
     public SpecialVMView(Controller controller){
         this.controller = controller;
         this.specialPanel = itemMenu();
+        this.basePanel = baseItems();
+        this.processPanel = processPanel();
 
         controller.getFrame().add(specialPanel, "Special Items Card");
-        // this.basePanel = baseItems();
+        controller.getFrame().add(basePanel, "Custom Card");
     }
 
     private JPanel itemMenu(){
@@ -35,6 +39,9 @@ public class SpecialVMView {
             @Override
             public void actionPerformed(ActionEvent e){
                 controller.getCardLayout().show(controller.getFrame().getContentPane(), "Custom Card");
+                updateCustomButtons();
+                basePanel.revalidate();
+                basePanel.repaint();
             }
         });
 
@@ -215,173 +222,182 @@ public class SpecialVMView {
         }
     }
 
+    
+
     private JPanel baseItems()
     {
-        int counter = 0;
-        JPanel panel = new JPanel(new GridLayout(4,1));
+        JPanel panel = new JPanel(new GridLayout(9, 1));
         
-        JLabel baseLabel = new JLabel("Base/Independent Items:");
+        JButton item1 = new JButton("N/A");
+        JButton item2 = new JButton("N/A");
+        JButton item3 = new JButton("N/A");
+        JButton item4 = new JButton("N/A");
+        JButton item5 = new JButton("N/A");
+        JButton item6 = new JButton("N/A");
+        JButton item7 = new JButton("N/A");
+        JButton item8 = new JButton("N/A");
 
-        JPanel itemRow1 = new JPanel(new GridLayout(1,3));
-        JPanel itemRow2 = new JPanel(new GridLayout(1,3));
-        JPanel itemRow3 = new JPanel(new GridLayout(1,3));
+        customButtons.add(item1);
+        customButtons.add(item2);
+        customButtons.add(item3);
+        customButtons.add(item4);
+        customButtons.add(item5);
+        customButtons.add(item6);
+        customButtons.add(item7);
+        customButtons.add(item8);
 
-        JButton item1 = new JButton(controller.getItemName(0));
-        exitButton.addActionListener(new ActionListener() {
+        JButton proceedButton = new JButton("Process");
+        proceedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                controller.getCardLayout().show(controller.getFrame().getContentPane(), "Main Card");
+                controller.getCardLayout().show(controller.getFrame().getContentPane(), "null");
             }
         });
 
+        panel.add(item1);
+        panel.add(item2);
+        panel.add(item3);
+        panel.add(item4);
+        panel.add(item5);
+        panel.add(item6);
+        panel.add(item7);
+        panel.add(item8);
+        panel.add(proceedButton);
 
-        JButton item2 = new JButton(controller.getItemName(1));
-        item2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e){
-                controller.getCardLayout().show(controller.getFrame().getContentPane(), "Main Card");
-            }
-        });
+        return panel;
+    }
 
-
-        JButton item3 = new JButton(controller.getItemName(2));
-        JButton item4 = new JButton(controller.getItemName(3));
-        JButton item5 = new JButton(controller.getItemName(4));
-        JButton item6 = new JButton(controller.getItemName(5));
-        JButton item7 = new JButton(controller.getItemName(6));
-        JButton item8 = new JButton(controller.getItemName(7));
-
-        if(controller.getItemIndependence(0)){
-            counter++;
-            if(counter <= 3){
-                itemRow1.add(item1);
-            }
-            else if(counter <= 6){
-                itemRow2.add(item1);
-            }
-            else if(counter <= 8){
-                itemRow3.add(item1);
-            }
+    public void initializeCustomButtons(){
+        switch(controller.getSlotCount()){
+            case 8:
+                customButtons.get(7).addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        controller.addToCart(7);
+                        updateCustomButtons();
+                        basePanel.revalidate();
+                        basePanel.repaint();
+                    }
+                });
+                customButtons.get(7).setText(controller.getItemName(7)+": "+controller.getItemCount(7)+"/10");
+            case 7:
+                customButtons.get(6).addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        controller.addToCart(6);
+                        updateCustomButtons();
+                        basePanel.revalidate();
+                        basePanel.repaint();
+                    }
+                });
+                customButtons.get(6).setText(controller.getItemName(6)+": "+controller.getItemCount(6)+"/10");
+            case 6:
+                customButtons.get(5).addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        controller.addToCart(5);
+                        updateCustomButtons();
+                        basePanel.revalidate();
+                        basePanel.repaint();
+                    }
+                });
+                customButtons.get(5).setText(controller.getItemName(5)+": "+controller.getItemCount(5)+"/10");
+            case 5:
+                customButtons.get(4).addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        controller.addToCart(4);
+                        updateCustomButtons();
+                        basePanel.revalidate();
+                        basePanel.repaint();
+                    }
+                });
+                customButtons.get(4).setText(controller.getItemName(4)+": "+controller.getItemCount(4)+"/10");
+            case 4:
+                customButtons.get(3).addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        controller.addToCart(3);
+                        updateCustomButtons();
+                        basePanel.revalidate();
+                        basePanel.repaint();
+                    }
+                });
+                customButtons.get(3).setText(controller.getItemName(3)+": "+controller.getItemCount(3)+"/10");
+            case 3:
+                customButtons.get(2).addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        controller.addToCart(2);
+                        updateCustomButtons();
+                        basePanel.revalidate();
+                        basePanel.repaint();
+                    }
+                });
+                customButtons.get(2).setText(controller.getItemName(2)+": "+controller.getItemCount(2)+"/10");
+            case 2:
+                customButtons.get(1).addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        controller.addToCart(1);
+                        updateCustomButtons();
+                        basePanel.revalidate();
+                        basePanel.repaint();
+                    }
+                });
+                customButtons.get(1).setText(controller.getItemName(1)+": "+controller.getItemCount(1)+"/10");
+            case 1:
+                customButtons.get(0).addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        controller.addToCart(0);
+                        updateCustomButtons();
+                        basePanel.revalidate();
+                        basePanel.repaint();
+                    }
+                });
+                customButtons.get(0).setText(controller.getItemName(0)+": "+controller.getItemCount(0)+"/10");
+            case 0:
+                break;
         }
+    }
 
-        if(controller.getItemIndependence(1)){
-            counter++;
-            if(counter <= 3){
-                itemRow1.add(item2);
-            }
-            else if(counter <= 6){
-                itemRow2.add(item2);
-            }
-            else if(counter <= 8){
-                itemRow3.add(item2);
-            }
-            
+    public void updateCustomButtons(){
+        switch(controller.getSlotCount()){
+            case 8:
+                customButtons.get(7).setText(controller.getItemName(7)+": "+controller.getItemCount(7)+"/10");
+            case 7:
+                customButtons.get(6).setText(controller.getItemName(6)+": "+controller.getItemCount(6)+"/10");
+            case 6:
+                customButtons.get(5).setText(controller.getItemName(5)+": "+controller.getItemCount(5)+"/10");
+            case 5:
+                customButtons.get(4).setText(controller.getItemName(4)+": "+controller.getItemCount(4)+"/10");
+            case 4:
+                customButtons.get(3).setText(controller.getItemName(3)+": "+controller.getItemCount(3)+"/10");
+            case 3:
+                customButtons.get(2).setText(controller.getItemName(2)+": "+controller.getItemCount(2)+"/10");
+            case 2:
+                customButtons.get(1).setText(controller.getItemName(1)+": "+controller.getItemCount(1)+"/10");
+            case 1:
+                customButtons.get(0).setText(controller.getItemName(0)+": "+controller.getItemCount(0)+"/10");
+            case 0:
+                break;
         }
-
-        if(controller.getItemIndependence(2)){
-            counter++;
-            if(counter <= 3){
-                itemRow1.add(item3);
-            }
-            else if(counter <= 6){
-                itemRow2.add(item3);
-            }
-            else if(counter <= 8){
-                itemRow3.add(item3);
-            }
-        }
-
-        if(controller.getItemIndependence(3)){
-            counter++;
-            if(counter <= 3){
-                itemRow1.add(item4);
-            }
-            else if(counter <= 6){
-                itemRow2.add(item4);
-            }
-            else if(counter <= 8){
-                itemRow3.add(item4);
-            }
-            
-        }
-
-        if(controller.getItemIndependence(4)){
-            counter++;
-            if(counter <= 3){
-                itemRow1.add(item5);
-            }
-            else if(counter <= 6){
-                itemRow2.add(item5);
-            }
-            else if(counter <= 8){
-                itemRow3.add(item5);
-            }
-        }
-
-        if(controller.getItemIndependence(5)){
-            counter++;
-            if(counter <= 3){
-                itemRow1.add(item6);
-            }
-            else if(counter <= 6){
-                itemRow2.add(item6);
-            }
-            else if(counter <= 8){
-                itemRow3.add(item6);
-            }
-        }
-
-        if(controller.getItemIndependence(6)){
-            counter++;
-            if(counter <= 3){
-                itemRow1.add(item7);
-            }
-            else if(counter <= 6){
-                itemRow2.add(item7);
-            }
-            else if(counter <= 8){
-                itemRow3.add(item7);
-            }
-
-            
-        }
-
-        if(controller.getItemIndependence(7)){
-            counter++;
-            if(counter <= 3){
-                itemRow1.add(item8);
-            }
-            else if(counter <= 6){
-                itemRow2.add(item8);
-            }
-            else if(counter <= 8){
-                itemRow3.add(item8);
-            }
-
-        }
-
-           
-
-
-
-
-
-
     }
 
     private JPanel processPanel()
     {
         JPanel panel = new JPanel(new GridLayout(8, 1));
 
-        JLabel process1 = new JLabel(controller.getProcess(index));
-        JLabel process2 = new JLabel(controller.getProcess(index));
-        JLabel process3 = new JLabel(controller.getProcess(index));
-        JLabel process4 = new JLabel(controller.getProcess(index));
-        JLabel process5 = new JLabel(controller.getProcess(index));
-        JLabel process6 = new JLabel(controller.getProcess(index));
-        JLabel process7 = new JLabel(controller.getProcess(index));
-        JLabel process8 = new JLabel(controller.getProcess(index));
+        // JLabel process1 = new JLabel(controller.getProcess(index));
+        // JLabel process2 = new JLabel(controller.getProcess(index));
+        // JLabel process3 = new JLabel(controller.getProcess(index));
+        // JLabel process4 = new JLabel(controller.getProcess(index));
+        // JLabel process5 = new JLabel(controller.getProcess(index));
+        // JLabel process6 = new JLabel(controller.getProcess(index));
+        // JLabel process7 = new JLabel(controller.getProcess(index));
+        // JLabel process8 = new JLabel(controller.getProcess(index));
 
-
+        return panel;
     };
 }
