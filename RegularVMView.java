@@ -5,20 +5,19 @@ import java.util.*;
 
 public class RegularVMView {
     private Controller controller;
-    private JPanel vendingMain, cashPanel, itemMenu, maintenanceMenu;
+    private JPanel vendingMain, cashPanel, itemMenu;
     private ArrayList<JButton> buttonList = new ArrayList<>();
+    private ArrayList<JLabel> labelList = new ArrayList<>();
 
     public RegularVMView(Controller controller){
         this.controller = controller;
         this.vendingMain = vendingMainMenu();
         this.cashPanel = cashPanel();
         this.itemMenu = itemMenu();
-        this.maintenanceMenu = maintenanceMenu();
 
         controller.getFrame().add(vendingMain, "Vending Features Card");
         controller.getFrame().add(cashPanel, "Receive Money Card");
         controller.getFrame().add(itemMenu, "Regular Items Card");
-        controller.getFrame().add(maintenanceMenu, "Maintenancee features Card");
         
         
     }
@@ -73,7 +72,7 @@ public class RegularVMView {
         fiveHundred.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                updateTotalMoney(500, totalMoney);
+                updateTotalMoney(500, totalMoney, 500);
                 panel.revalidate();
                 panel.repaint();
             }
@@ -83,7 +82,7 @@ public class RegularVMView {
         twoHundred.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                updateTotalMoney(200, totalMoney);
+                updateTotalMoney(200, totalMoney, 200);
                 panel.revalidate();
                 panel.repaint();
             }
@@ -93,7 +92,7 @@ public class RegularVMView {
         oneHundred.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                updateTotalMoney(100, totalMoney);
+                updateTotalMoney(100, totalMoney, 100);
                 panel.revalidate();
                 panel.repaint();
             }
@@ -103,7 +102,7 @@ public class RegularVMView {
         fifty.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                updateTotalMoney(50, totalMoney);
+                updateTotalMoney(50, totalMoney, 50);
                 panel.revalidate();
                 panel.repaint();
             }
@@ -113,7 +112,7 @@ public class RegularVMView {
         twenty.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                updateTotalMoney(20, totalMoney);
+                updateTotalMoney(20, totalMoney, 20);
                 panel.revalidate();
                 panel.repaint();
             }
@@ -123,7 +122,7 @@ public class RegularVMView {
         ten.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                updateTotalMoney(10, totalMoney);
+                updateTotalMoney(10, totalMoney,10);
                 panel.revalidate();
                 panel.repaint();
             }
@@ -133,7 +132,7 @@ public class RegularVMView {
         five.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                updateTotalMoney(5, totalMoney);
+                updateTotalMoney(5, totalMoney, 5);
                 panel.revalidate();
                 panel.repaint();
             }
@@ -143,7 +142,7 @@ public class RegularVMView {
         one.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                updateTotalMoney(1, totalMoney);
+                updateTotalMoney(1, totalMoney, 1);
                 panel.revalidate();
                 panel.repaint();
             }
@@ -164,6 +163,9 @@ public class RegularVMView {
             @Override
             public void actionPerformed(ActionEvent e){
                 controller.showItemMenu();
+                updateLabels();
+                itemMenu.revalidate();
+                itemMenu.repaint();
             }
         });
 
@@ -200,14 +202,14 @@ public class RegularVMView {
         buttonList.add(item7);
         buttonList.add(item8);
         
-        JPanel infoPanel = new JPanel();
-        JLabel itemNamLabel = new JLabel("null");
-        JPanel buyPanel = new JPanel();
-        
+        JLabel changeLabel = new JLabel("Total Change: "+ controller.getPaymentTotal());
+        JLabel caloriesLabel = new JLabel("Total Calories: 0");
+
         JButton exitButton = new JButton("Exit");
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
+                controller.checkOut();
                 controller.getCardLayout().show(controller.getFrame().getContentPane(), "Main Card");
             }
         });
@@ -215,26 +217,23 @@ public class RegularVMView {
         panel.add(item1);
         panel.add(item2);
         panel.add(item3);
-        panel.add(infoPanel);
+        panel.add(changeLabel);
         panel.add(item4);
         panel.add(item5);
         panel.add(item6);
-        panel.add(buyPanel);
+        panel.add(caloriesLabel);
         panel.add(item7);
         panel.add(item8);
         panel.add(exitButton);
+
+        labelList.add(changeLabel);
+        labelList.add(caloriesLabel);
         
         return panel;
     }
 
-    private JPanel maintenanceMenu(){
-        JPanel panel = new JPanel();
-        panel.setVisible(true);
-        return panel;
-    }
-
-    private void updateTotalMoney(int amount, JLabel label){
-        int updatedMoney = controller.updateTotalPayment(amount);
+    private void updateTotalMoney(int amount, JLabel label, int denomination){
+        int updatedMoney = controller.updateTotalPayment(amount, denomination);
         label.setText("Total Payment: " + updatedMoney);
     }
 
@@ -246,66 +245,99 @@ public class RegularVMView {
                 buttonList.get(7).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
-                        
+                        controller.removeItem(7);
+                        updateItemButtons();
+                        updateLabels();
+                        itemMenu.revalidate();
+                        itemMenu.repaint();
                     }
                 });
-                buttonList.get(7).setText(controller.getItemName(7)+controller.getItemCount(7)+"/10");
+                buttonList.get(7).setText(controller.getItemName(7)+": "+controller.getItemCount(7)+"/10");
             case 7:
                 buttonList.get(6).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
-                        
+                        controller.removeItem(6);
+                        updateItemButtons();
+                        updateLabels();
+                        itemMenu.revalidate();
+                        itemMenu.repaint();
                     }
                 });
-                buttonList.get(6).setText(controller.getItemName(6)+controller.getItemCount(6)+"/10");
+                buttonList.get(6).setText(controller.getItemName(6)+": "+controller.getItemCount(6)+"/10");
             case 6:
                 buttonList.get(5).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
-                        
+                        controller.removeItem(5);
+                        updateItemButtons();
+                        updateLabels();
+                        itemMenu.revalidate();
+                        itemMenu.repaint();
+
                     }
                 });
-                buttonList.get(5).setText(controller.getItemName(5)+controller.getItemCount(5)+"/10");
+                buttonList.get(5).setText(controller.getItemName(5)+": "+controller.getItemCount(5)+"/10");
             case 5:
                 buttonList.get(4).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
-                        
+                        controller.removeItem(4);
+                        updateItemButtons();
+                        updateLabels();
+                        itemMenu.revalidate();
+                        itemMenu.repaint();
                     }
                 });
-                buttonList.get(4).setText(controller.getItemName(4)+controller.getItemCount(4)+"/10");
+                buttonList.get(4).setText(controller.getItemName(4)+": "+controller.getItemCount(4)+"/10");
             case 4:
                 buttonList.get(3).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
-                        
+                        controller.removeItem(3);
+                        updateItemButtons();
+                        updateLabels();
+                        itemMenu.revalidate();
+                        itemMenu.repaint();
                     }
                 });
-                buttonList.get(3).setText(controller.getItemName(3)+controller.getItemCount(3)+"/10");
+                buttonList.get(3).setText(controller.getItemName(3)+": "+controller.getItemCount(3)+"/10");
             case 3:
                 buttonList.get(2).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
-                        
+                        controller.removeItem(2);
+                        updateItemButtons();
+                        updateLabels();
+                        itemMenu.revalidate();
+                        itemMenu.repaint();
                     }
                 });
-                buttonList.get(2).setText(controller.getItemName(2)+controller.getItemCount(2)+"/10");
+                buttonList.get(2).setText(controller.getItemName(2)+": "+controller.getItemCount(2)+"/10");
             case 2:
                 buttonList.get(1).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
-                        
+                        controller.removeItem(1);
+                        updateItemButtons();
+                        updateLabels();
+                        itemMenu.revalidate();
+                        itemMenu.repaint();
                     }
                 });
-                buttonList.get(1).setText(controller.getItemName(1)+controller.getItemCount(1)+"/10");
+                buttonList.get(1).setText(controller.getItemName(1)+": "+controller.getItemCount(1)+"/10");
             case 1:
                 buttonList.get(0).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
-                        
+                        controller.removeItem(0);
+                        updateItemButtons();
+                        updateLabels();
+                        itemMenu.revalidate();
+                        itemMenu.repaint();
                     }
                 });
-                buttonList.get(0).setText(controller.getItemName(0)+controller.getItemCount(0)+"/10");
+                buttonList.get(0).setText(controller.getItemName(0)+": "+controller.getItemCount(0)+"/10");
             case 0:
                 break;
         }
@@ -314,24 +346,29 @@ public class RegularVMView {
     public void updateItemButtons(){
         switch(controller.getSlotCount()){
             case 8:
-                buttonList.get(7).setText(controller.getItemName(7)+" "+controller.getItemCount(7)+"/10");
+                buttonList.get(7).setText(controller.getItemName(7)+": "+controller.getItemCount(7)+"/10");
             case 7:
-                buttonList.get(6).setText(controller.getItemName(6)+" "+controller.getItemCount(6)+"/10");
+                buttonList.get(6).setText(controller.getItemName(6)+": "+controller.getItemCount(6)+"/10");
             case 6:
-                buttonList.get(5).setText(controller.getItemName(5)+" "+controller.getItemCount(5)+"/10");
+                buttonList.get(5).setText(controller.getItemName(5)+": "+controller.getItemCount(5)+"/10");
             case 5:
-                buttonList.get(4).setText(controller.getItemName(4)+" "+controller.getItemCount(4)+"/10");
+                buttonList.get(4).setText(controller.getItemName(4)+": "+controller.getItemCount(4)+"/10");
             case 4:
-                buttonList.get(3).setText(controller.getItemName(3)+" "+controller.getItemCount(3)+"/10");
+                buttonList.get(3).setText(controller.getItemName(3)+": "+controller.getItemCount(3)+"/10");
             case 3:
-                buttonList.get(2).setText(controller.getItemName(2)+" "+controller.getItemCount(2)+"/10");
+                buttonList.get(2).setText(controller.getItemName(2)+": "+controller.getItemCount(2)+"/10");
             case 2:
-                buttonList.get(1).setText(controller.getItemName(1)+" "+controller.getItemCount(1)+"/10");
+                buttonList.get(1).setText(controller.getItemName(1)+": "+controller.getItemCount(1)+"/10");
             case 1:
-                buttonList.get(0).setText(controller.getItemName(0)+" "+controller.getItemCount(0)+"/10");
+                buttonList.get(0).setText(controller.getItemName(0)+": "+controller.getItemCount(0)+"/10");
             case 0:
                 break;
         }
+    }
+
+    public void updateLabels(){
+        labelList.get(0).setText("Total Change: "+ controller.getPaymentTotal());
+        labelList.get(1).setText("Total Calories: "+ controller.getCaloriesTotal());
     }
 }
 

@@ -5,6 +5,7 @@ public class VMModel{
     ArrayList<ArrayList<Item>> inventory = new ArrayList<>();
     ArrayList<String> itemList = new ArrayList<>();
     int paymentTotal;
+    int caloriesTotal;
     private Controller controller;
 
     public VMModel(Controller controller){
@@ -34,7 +35,15 @@ public class VMModel{
         return this.paymentTotal;
     }
 
+    public int getCalories(){
+        return this.caloriesTotal;
+    }
+
     public void setPayment(int amount){
         this.paymentTotal = amount;
+    }
+
+    public void setCalories(int amount){
+        this.caloriesTotal = amount;
     }
 }

@@ -38,6 +38,7 @@ public class Controller {
 
     public void createVM(int choice){
         if(choice == 0){
+            vendingMachine = new VMModel(this);
             cardLayout.show(frame.getContentPane(), "Create Card");
         }else if (choice == 1){
             this.vendingMachine = new SpecialVMModel(this);
@@ -141,8 +142,35 @@ public class Controller {
         return vendingMachine.getItemList().indexOf(name);
     }
 
-    public int updateTotalPayment(int amount){
-        vendingMachine.setPayment(vendingMachine.getPayment()+amount);
+    public int updateTotalPayment(int amount, int denomination){
+        int initialAmmount = vendingMachine.getPayment();
+        vendingMachine.setPayment(initialAmmount+amount);
+        switch(denomination){
+            case 500:
+                vendingMachine.getMachineBalance().setFiveHundred(vendingMachine.getMachineBalance().getFiveHundred()+1);
+                break;
+            case 200:
+                vendingMachine.getMachineBalance().setFiveHundred(vendingMachine.getMachineBalance().getTwoHundred()+1);
+                break;
+            case 100:
+                vendingMachine.getMachineBalance().setFiveHundred(vendingMachine.getMachineBalance().getOneHundred()+1);
+                break;
+            case 50:
+                vendingMachine.getMachineBalance().setFiveHundred(vendingMachine.getMachineBalance().getFifty()+1);
+                break;
+            case 20:
+                vendingMachine.getMachineBalance().setFiveHundred(vendingMachine.getMachineBalance().getTwenty()+1);
+                break;
+            case 10:
+                vendingMachine.getMachineBalance().setFiveHundred(vendingMachine.getMachineBalance().getTen()+1);
+                break;
+            case 5:
+                vendingMachine.getMachineBalance().setFiveHundred(vendingMachine.getMachineBalance().getFive()+1);
+                break;
+            case 1:
+                vendingMachine.getMachineBalance().setFiveHundred(vendingMachine.getMachineBalance().getOne()+1);
+                break;
+            }
         return vendingMachine.getPayment();
     }
 
@@ -159,7 +187,106 @@ public class Controller {
     }
 
     public void removeItem(int index){
-        vendingMachine.getInventory().get(index).remove(vendingMachine.getInventory().get(index).size()-1);
+        if(vendingMachine.getInventory().get(index).size()>0){
+            int currentPayment = vendingMachine.getPayment();
+            int price = vendingMachine.getInventory().get(index).get(0).getPrice();
+            vendingMachine.setPayment(currentPayment - price);
+            int currentCalories = vendingMachine.getCalories();
+            int itemCalories = vendingMachine.getInventory().get(index).get(0).getCalories();
+            vendingMachine.setCalories(currentCalories+itemCalories);
+            vendingMachine.getInventory().get(index).remove(vendingMachine.getInventory().get(index).size()-1);
+        }
+
+    }
+
+    public int getPaymentTotal(){
+        return vendingMachine.getPayment();
+    }
+
+    public int getCaloriesTotal(){
+        return vendingMachine.getCalories();
+    }
+    
+    public boolean checkIndependence(int index){
+        if(vendingMachine.getInventory().get(index).get(0).getIndependence()) return true;
+        else return false;
+    }
+
+    public void checkOut(){
+        int c = vendingMachine.getPayment();
+        int bFiveh = vendingMachine.machineBalance.getFiveHundred(), 
+            bTwoh = vendingMachine.machineBalance.getTwoHundred(), 
+            bOneh = vendingMachine.machineBalance.getOneHundred(), 
+            bFifty = vendingMachine.machineBalance.getFifty(), 
+            bTwenty = vendingMachine.machineBalance.getTwenty(), 
+            bTen = vendingMachine.machineBalance.getTen(), 
+            bFive = vendingMachine.machineBalance.getFive(),
+            bOne = vendingMachine.machineBalance.getOne();
+        int cFiveh = 0, 
+            cTwoh = 0, 
+            cOneh = 0, 
+            cFifty = 0, 
+            cTwenty = 0, 
+            cTen = 0, 
+            cFive = 0,
+            cOne = 0;
+
+        
+        while(bFiveh>0 && c>=500){
+            c -= 500;
+            bFiveh--;
+            cFiveh++;
+            vendingMachine.userChange.setFiveHundred(vendingMachine.userChange.getFiveHundred()+1);
+        }
+        while(bTwoh>0 && c>=200){
+            c -= 200;
+            bTwoh--;
+            cTwoh++;
+            vendingMachine.userChange.setTwoHundred(vendingMachine.userChange.getTwoHundred()+1);
+        }
+        while(bOneh>0 && c>=100){
+            c -= 100;
+            bOneh--;
+            cOneh++;
+            vendingMachine.userChange.setOneHundred(vendingMachine.userChange.getOneHundred()+1);
+        }
+        while(bFifty>0 && c>=50){
+            c -= 50;
+            bFifty--;
+            cFifty++;
+           vendingMachine.userChange.setFifty(vendingMachine.userChange.getFifty()+1);
+        }
+        while(bTwenty>0 && c>=20){
+            c -= 20;
+            bTwenty--;
+            cTwenty++;
+            vendingMachine.userChange.setTwenty(vendingMachine.userChange.getTwenty()+1);
+        }
+        while(bTen>0 && c>=10){
+            c -= 10;
+            bTen--;
+            cTen++;
+            vendingMachine.userChange.setTen(vendingMachine.userChange.getTen()+1);
+        }
+        while(bFive>0 && c>=5){
+            c -= 5;
+            bFive--;
+            cFive++;
+            vendingMachine.userChange.setFive(vendingMachine.userChange.getFive()+1);
+        }
+        while(bOne>0 && c>=1){
+            c-=1;
+            bOne--;
+            cOne++;
+            vendingMachine.userChange.setOne(vendingMachine.userChange.getOne()+1);
+        }
+        String msg = "Five Hundred: "+cFiveh+"\n"+"Two Hundred: "+cTwoh+"\n"+
+                    "One Hundred: "+cOneh+"\n"+"Fifty: "+cFifty+"\n"+
+                    "Twenty: "+cTwenty+"\n"+"Ten: "+cTen+"\n"+
+                    "Five: "+cFive+"\n"+"One: "+cOne+"\n";
+        JOptionPane.showMessageDialog(null, msg,
+                                "Change", JOptionPane.INFORMATION_MESSAGE);
     }
 }
+
 
