@@ -101,10 +101,11 @@ public class MainMenuView {
                     inventoryPanel.revalidate();
                     inventoryPanel.repaint();
                 }else{
-                    controller.addItemToInventory(name);
-                    updateItemCounter(name);
-                    inventoryPanel.revalidate();
-                    inventoryPanel.repaint();
+                    if(controller.addItemToInventory(name)){
+                        updateItemCounter(name);
+                        inventoryPanel.revalidate();
+                        inventoryPanel.repaint();
+                    }
                 }
             }
         });
