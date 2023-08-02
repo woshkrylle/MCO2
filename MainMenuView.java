@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.text.Style;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -22,12 +21,10 @@ public class MainMenuView {
         controller.getFrame().add(mainPanel, "Main Card");
         controller.getFrame().add(createPanel, "Create Card");
         controller.getFrame().add(itemPanel, "Item Card");
-        controller.getCardLayout().show(controller.getFrame().getContentPane(), "Main Card");
-
     }
 
     /**
-     * 
+     * Initializes the GUI for the Main Menu
      */
     private JPanel InitializeMainPanel(){
         JPanel panel = new JPanel(new GridLayout(3, 1));
@@ -44,14 +41,7 @@ public class MainMenuView {
                                                           JOptionPane.YES_NO_CANCEL_OPTION, 
                                                           JOptionPane.QUESTION_MESSAGE, 
                                                           null, options, options[0]);
-
-                if(choice == 0){
-                    controller.createRegular();
-                    controller.getCardLayout().show(controller.getFrame().getContentPane(), "Create Card");
-                }else if (choice == 1){
-                    controller.createSpecial();
-                    controller.getCardLayout().show(controller.getFrame().getContentPane(), "Create Card");
-                }
+                controller.createVM(choice);
             }
         });
 
@@ -60,14 +50,10 @@ public class MainMenuView {
         testButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                boolean existence = false;
-                existence = controller.testVM();
-                if(existence){
-                    
-                }
+                controller.testVM();
             }
         });
-
+        
         JButton exitButton = new JButton("Exit");
         exitButton.setFocusable(false);
         exitButton.addActionListener(new ActionListener() {

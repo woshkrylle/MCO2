@@ -36,31 +36,26 @@ public class Controller {
 
     public void Run(){
         this.frame.setVisible(true);
+        cardLayout.show(frame.getContentPane(), "Main Card");
     }
 
-    public void createRegular(){
-        this.vendingMachine = new RegularVM(this);
+    public void createVM(int choice){
+        if(choice == 0){
+            this.vendingMachine = new RegularVM();
+            cardLayout.show(frame.getContentPane(), "Create Card");
+        }else if (choice == 1){
+            this.vendingMachine = new SpecialVM();
+            cardLayout.show(frame.getContentPane(), "Create Card");
+        }
     }
 
-    public void createSpecial(){
-        this.vendingMachine = new SpecialVM(this);
-        
-    }
-
-    public boolean testVM(){
+    public void testVM(){
         if(vendingMachine != null){
-            if(vendingMachine instanceof SpecialVM){
-                //open SpecialVMView
-                return true;
-            }else if(vendingMachine instanceof RegularVM){
-                //open RegularVMView
-                return true;
-            }else{
-                return false;
+            if(vendingMachine instanceof RegularVM){
+                cardLayout.show(frame.getContentPane(), "Vending Features Card");
             }
         }else{
             noVM();
-            return false;
         }
     }
 
@@ -69,13 +64,6 @@ public class Controller {
         String title = "Warning!";
         JOptionPane.showMessageDialog(null, message, title, JOptionPane.WARNING_MESSAGE);
     }
-
-
-    public void addPanel(JPanel panel){
-        this.frame.add(panel);
-    }
-
-    
 
     public JFrame getFrame(){
         return this.frame;
@@ -90,8 +78,13 @@ public class Controller {
         else return false;
     }
 
-    public void newItemListEntry(String name){
-        vmModel.getItemList().add(name);
+    public boolean newItemListEntry(String name){
+        if(vmModel.getItemList().size()<8) {
+            vmModel.getItemList().add(name);
+            cardLayout.show(frame.getContentPane(), "Item Card");
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -99,14 +92,19 @@ public class Controller {
      * the first item of that type and adding the clone to the inventory
      * @param name
      */
-    public void addItemToInventory(String name){
+    public boolean addItemToInventory(String name){
         int index = vmModel.getItemList().indexOf(name);
-        int price = vmModel.getInventory().get(index).get(0).getPrice();
-        int calories = vmModel.getInventory().get(index).get(0).getCalories();
-        String process = vmModel.getInventory().get(index).get(0).getProcess();
-        boolean independence = vmModel.getInventory().get(index).get(0).getIndependence();
-        Item existingItem = new Item(name, price, calories, process, independence);
-        vmModel.getInventory().get(index).add(existingItem);
+        if(vmModel.getInventory().get(index).size()<10){
+            int price = vmModel.getInventory().get(index).get(0).getPrice();
+            int calories = vmModel.getInventory().get(index).get(0).getCalories();
+            String process = vmModel.getInventory().get(index).get(0).getProcess();
+            boolean independence = vmModel.getInventory().get(index).get(0).getIndependence();
+            Item existingItem = new Item(name, price, calories, process, independence);
+            vmModel.getInventory().get(index).add(existingItem);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**

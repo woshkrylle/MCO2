@@ -89,12 +89,22 @@ public class RegularVMView {
         JLabel totalMoney = new JLabel();
         totalMoney.setText("Remaining Balace: "+  VMModel.getPayment());
         
+        JButton proceedButton = new JButton("Proceed");
+        proceedButton.setFocusable(false);
+        proceedButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                controller.getCardLayout().show(controller.getFrame().getContentPane(), "Show Items Card");
+            }
+        });
+
         // JButton
         panel.add(totalMonners);
         panel.add(monnersPanel1);
         panel.add(monnersPanel2);
         panel.add(monnersPanel3);
         panel.add(monnersPanel4);
+        panel.add(proceedButton);
 
 
     }
