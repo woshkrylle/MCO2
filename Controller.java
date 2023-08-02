@@ -84,8 +84,8 @@ public class Controller {
             cardLayout.show(frame.getContentPane(), "Item Card");
             return true;
         }else{
-            return false;
             JOptionPane.showMessageDialog(null, "Available slots are already filled", "Error", JOptionPane.WARNING_MESSAGE);
+            return false;
         }
     }
 
