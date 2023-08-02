@@ -19,7 +19,7 @@ public class VMModel{
     }
 
     public Denominations getUserChange(){
-        return this.userChange
+        return this.userChange;
     }
 
     public ArrayList<ArrayList<Item>> getInventory(){

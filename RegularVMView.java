@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class RegularVMView {
     private Controller controller;
@@ -85,9 +86,8 @@ public class RegularVMView {
         monnersPanel4.add(five);
         monnersPanel4.add(one);
         
-        JPanel totalMonners = new JPanel(FlowLayout());
+        JPanel totalMonners = new JPanel(new FlowLayout());
         JLabel totalMoney = new JLabel();
-        totalMoney.setText("Remaining Balace: "+  VMModel.getPayment());
         
         JButton proceedButton = new JButton("Proceed");
         proceedButton.setFocusable(false);
@@ -106,16 +106,16 @@ public class RegularVMView {
         panel.add(monnersPanel4);
         panel.add(proceedButton);
 
-
+        return panel;
     }
 
     public JPanel itemMenu(){
-        JPanel panel = new Panel();
+        JPanel panel = new JPanel();
         return panel;
     }
 
     public JPanel maintenanceMenu(){
-        JPanel panel = new Panel();
+        JPanel panel = new JPanel();
         return panel;
     }
 
