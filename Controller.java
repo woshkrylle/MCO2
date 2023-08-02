@@ -51,9 +51,7 @@ public class Controller {
 
     public void testVM(){
         if(vendingMachine != null){
-            if(vendingMachine instanceof RegularVM){
-                cardLayout.show(frame.getContentPane(), "Vending Features Card");
-            }
+            cardLayout.show(frame.getContentPane(), "Vending Features Card");
         }else{
             noVM();
         }

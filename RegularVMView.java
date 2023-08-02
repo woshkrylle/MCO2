@@ -11,12 +11,12 @@ public class RegularVMView {
         this.vendingMain = vendingMainMenu();
         this.cashPanel = cashPanel();
         this.itemMenu = itemMenu();
-        this.itemMenu = maintenanceMenu();
+        this.maintenanceMenu = maintenanceMenu();
 
         controller.getFrame().add(vendingMain, "Vending Features Card");
-        controller.getFrame().add(vendingMain, "Receive Money Card");
-        controller.getFrame().add(vendingMain, "Show Items Card");
-        controller.getFrame().add(vendingMain, "Maintenancee features Card");
+        controller.getFrame().add(cashPanel, "Receive Money Card");
+        controller.getFrame().add(itemMenu, "Show Items Card");
+        controller.getFrame().add(maintenanceMenu, "Maintenancee features Card");
         
     }
 
@@ -50,6 +50,7 @@ public class RegularVMView {
         panel.add(vendingButton);
         panel.add(maintenanceButton);
         panel.add(exitButton);
+        panel.setVisible(true);
 
         return panel;
     }
@@ -57,10 +58,10 @@ public class RegularVMView {
     public JPanel cashPanel(){
         JPanel panel = new JPanel(new GridLayout(6, 1));
 
-        JPanel monnersPanel1 = new JPanel(new GridLayout(2, 1));
-        JPanel monnersPanel2 = new JPanel(new GridLayout(2, 1));
-        JPanel monnersPanel3 = new JPanel(new GridLayout(2, 1));
-        JPanel monnersPanel4 = new JPanel(new GridLayout(2, 1));
+        JPanel monnersPanel1 = new JPanel(new GridLayout(1, 2));
+        JPanel monnersPanel2 = new JPanel(new GridLayout(1, 2));
+        JPanel monnersPanel3 = new JPanel(new GridLayout(1, 2));
+        JPanel monnersPanel4 = new JPanel(new GridLayout(1, 2));
 
         JLabel totalMoney = new JLabel();
         totalMoney.setText("Total Payment: 0");
@@ -114,6 +115,7 @@ public class RegularVMView {
         panel.add(monnersPanel3);
         panel.add(monnersPanel4);
         panel.add(proceedButton);
+        panel.setVisible(true);
 
         return panel;
     }
@@ -125,6 +127,7 @@ public class RegularVMView {
 
     public JPanel maintenanceMenu(){
         JPanel panel = new JPanel();
+        panel.setVisible(true);
         return panel;
     }
 

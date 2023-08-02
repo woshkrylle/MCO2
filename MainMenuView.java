@@ -94,12 +94,13 @@ public class MainMenuView {
                 String name = itemName.getText();
                 
                 if(!controller.checkForItem(name)){
-                    controller.newItemListEntry(name);
-                    controller.getCardLayout().show(controller.getFrame().getContentPane(), "Item Card");
-                    lbl.setText("Slots Filled: " + controller.getSlotCount());
-                    addItemCounter(name, inventoryPanel);
-                    inventoryPanel.revalidate();
-                    inventoryPanel.repaint();
+                    if(controller.newItemListEntry(name)){
+                        controller.getCardLayout().show(controller.getFrame().getContentPane(), "Item Card");
+                        lbl.setText("Slots Filled: " + controller.getSlotCount());
+                        addItemCounter(name, inventoryPanel);
+                        inventoryPanel.revalidate();
+                        inventoryPanel.repaint();
+                    }
                 }else{
                     if(controller.addItemToInventory(name)){
                         updateItemCounter(name);
