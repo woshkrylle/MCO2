@@ -6,19 +6,19 @@ public class Controller {
     private MainMenuView mainMenu;
     private RegularVMView rvmView;
     private SpecialVMView svmView;
-    private VMModel vmModel;
-    private RegularVM vendingMachine;
+    private VMModel vendingMachine;
     private JFrame frame;
     private CardLayout cardLayout;
+    private boolean existing = false;
 
     public Controller(){
+        vendingMachine = new VMModel(this);
         this.frame = new JFrame("Vending Machine Factory");
         this.frame.setLayout(new CardLayout());
         this.cardLayout = (CardLayout) frame.getContentPane().getLayout();
         this.frame.setResizable(false);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setSize(480, 360);
-        
     }
 
     public void setMainMenu(MainMenuView mainMenu){
@@ -30,9 +30,6 @@ public class Controller {
     public void setSVMView(SpecialVMView svmView){
         this.svmView = svmView;
     }
-    public void setVMModel(VMModel vmModel){
-        this.vmModel = vmModel;
-    }
 
     public void Run(){
         this.frame.setVisible(true);
@@ -41,26 +38,22 @@ public class Controller {
 
     public void createVM(int choice){
         if(choice == 0){
-            this.vendingMachine = new RegularVM();
             cardLayout.show(frame.getContentPane(), "Create Card");
         }else if (choice == 1){
-            this.vendingMachine = new SpecialVM();
+            this.vendingMachine = new SpecialVMModel(this);
             cardLayout.show(frame.getContentPane(), "Create Card");
         }
+        existing = true;
     }
 
     public void testVM(){
-        if(vendingMachine != null){
+        if(existing){
             cardLayout.show(frame.getContentPane(), "Vending Features Card");
         }else{
-            noVM();
+            String message = "There is no existing vending machine";
+            String title = "Warning!";
+            JOptionPane.showMessageDialog(null, message, title, JOptionPane.WARNING_MESSAGE);;
         }
-    }
-
-    public void noVM(){
-        String message = "There is no existing vending machine";
-        String title = "Warning!";
-        JOptionPane.showMessageDialog(null, message, title, JOptionPane.WARNING_MESSAGE);
     }
 
     public JFrame getFrame(){
@@ -72,13 +65,13 @@ public class Controller {
     }
 
     public boolean checkForItem(String itemName){
-        if(vmModel.getItemList().contains(itemName)) return true;
+        if(vendingMachine.getItemList().contains(itemName)) return true;
         else return false;
     }
 
     public boolean newItemListEntry(String name){
-        if(vmModel.getItemList().size()<8) {
-            vmModel.getItemList().add(name);
+        if(vendingMachine.getItemList().size()<8) {
+            vendingMachine.getItemList().add(name);
             cardLayout.show(frame.getContentPane(), "Item Card");
             return true;
         }else{
@@ -93,14 +86,14 @@ public class Controller {
      * @param name
      */
     public boolean addItemToInventory(String name){
-        int index = vmModel.getItemList().indexOf(name);
-        if(vmModel.getInventory().get(index).size()<10){
-            int price = vmModel.getInventory().get(index).get(0).getPrice();
-            int calories = vmModel.getInventory().get(index).get(0).getCalories();
-            String process = vmModel.getInventory().get(index).get(0).getProcess();
-            boolean independence = vmModel.getInventory().get(index).get(0).getIndependence();
+        int index = vendingMachine.getItemList().indexOf(name);
+        if(vendingMachine.getInventory().get(index).size()<10){
+            int price = vendingMachine.getInventory().get(index).get(0).getPrice();
+            int calories = vendingMachine.getInventory().get(index).get(0).getCalories();
+            String process = vendingMachine.getInventory().get(index).get(0).getProcess();
+            boolean independence = vendingMachine.getInventory().get(index).get(0).getIndependence();
             Item existingItem = new Item(name, price, calories, process, independence);
-            vmModel.getInventory().get(index).add(existingItem);
+            vendingMachine.getInventory().get(index).add(existingItem);
             return true;
         }else{
             JOptionPane.showMessageDialog(null, "This slot is already full", "Error", JOptionPane.WARNING_MESSAGE);
@@ -117,11 +110,11 @@ public class Controller {
      * @param independence
      */
     public void addItemToInventory(int price, int calories, String process, boolean independence){
-        String name = vmModel.getItemList().get(vmModel.getItemList().size()-1);
+        String name = vendingMachine.getItemList().get(vendingMachine.getItemList().size()-1);
         Item newItem = new Item (name, price, calories, process, independence);
         ArrayList<Item> inventoryRow = new ArrayList<>();
         inventoryRow.add(newItem);
-        vmModel.getInventory().add(inventoryRow);
+        vendingMachine.getInventory().add(inventoryRow);
     }
 
 
@@ -131,21 +124,29 @@ public class Controller {
      * @return 
      */
     public int getSlotCount(){
-        return vmModel.getItemList().size();
+        return vendingMachine.getItemList().size();
     }
 
     public int getItemCount(String name){
-        int i = vmModel.getItemList().indexOf(name);
-        return vmModel.getInventory().get(i).size();
+        int i = vendingMachine.getItemList().indexOf(name);
+        return vendingMachine.getInventory().get(i).size();
     }
 
     public int getItemIndex(String name){
-        return vmModel.getItemList().indexOf(name);
+        return vendingMachine.getItemList().indexOf(name);
     }
 
     public int updateTotalPayment(int amount){
-        vmModel.setPayment(vmModel.getPayment()+amount);
-        return vmModel.getPayment();
+        vendingMachine.setPayment(vendingMachine.getPayment()+amount);
+        return vendingMachine.getPayment();
+    }
+
+    public void showItemMenu(){
+        if(vendingMachine instanceof SpecialVMModel){
+            //cardLayout.show(frame.getContentPane(), "Special Items Card");
+        }else{
+            cardLayout.show(frame.getContentPane(), "Regular Items Card");
+        }
     }
 }
 

@@ -15,7 +15,7 @@ public class RegularVMView {
 
         controller.getFrame().add(vendingMain, "Vending Features Card");
         controller.getFrame().add(cashPanel, "Receive Money Card");
-        controller.getFrame().add(itemMenu, "Show Items Card");
+        controller.getFrame().add(itemMenu, "Regular Items Card");
         controller.getFrame().add(maintenanceMenu, "Maintenancee features Card");
         
     }
@@ -40,7 +40,7 @@ public class RegularVMView {
         });
 
         JButton exitButton = new JButton("Exit");
-        maintenanceButton.addActionListener(new ActionListener(){
+        exitButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 controller.getCardLayout().show(controller.getFrame().getContentPane(), "Main Card");
@@ -77,18 +77,74 @@ public class RegularVMView {
         });
 
         JButton twoHundred = new JButton("200");
+        twoHundred.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                updateTotalMoney(200, totalMoney);
+                panel.revalidate();
+                panel.repaint();
+            }
+        });
         
         JButton oneHundred = new JButton("100");
+        oneHundred.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                updateTotalMoney(100, totalMoney);
+                panel.revalidate();
+                panel.repaint();
+            }
+        });
 
         JButton fifty = new JButton("50");
+        fifty.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                updateTotalMoney(50, totalMoney);
+                panel.revalidate();
+                panel.repaint();
+            }
+        });
         
         JButton twenty = new JButton("20");
+        twenty.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                updateTotalMoney(20, totalMoney);
+                panel.revalidate();
+                panel.repaint();
+            }
+        });
 
         JButton ten = new JButton("10");
+        ten.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                updateTotalMoney(10, totalMoney);
+                panel.revalidate();
+                panel.repaint();
+            }
+        });
         
         JButton five = new JButton("5");
+        five.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                updateTotalMoney(5, totalMoney);
+                panel.revalidate();
+                panel.repaint();
+            }
+        });
 
         JButton one = new JButton("1");
+        one.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                updateTotalMoney(1, totalMoney);
+                panel.revalidate();
+                panel.repaint();
+            }
+        });
 
         monnersPanel1.add(fiveHundred);
         monnersPanel1.add(twoHundred);
@@ -104,7 +160,7 @@ public class RegularVMView {
         proceedButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                controller.getCardLayout().show(controller.getFrame().getContentPane(), "Show Items Card");
+                controller.showItemMenu();
             }
         });
 

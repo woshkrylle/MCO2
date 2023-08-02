@@ -12,9 +12,6 @@ import java.util.*;
 public class Main {
     public static void main(String[] args){
         Controller controller = new Controller();
-
-        VMModel vmm = new VMModel(controller);
-        controller.setVMModel(vmm);
         
         MainMenuView mm = new MainMenuView(controller);
         controller.setMainMenu(mm);
