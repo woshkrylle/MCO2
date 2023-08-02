@@ -142,10 +142,9 @@ public class Controller {
         return vmModel.getItemList().indexOf(name);
     }
 
-    public int addMoney(int prevbal, int add){
-        return 0;
+    public int updateTotalPayment(int amount){
+        vmModel.setPayment(vmModel.getPayment()+amount);
+        return vmModel.getPayment();
     }
-
-    
 }
 

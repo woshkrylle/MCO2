@@ -62,32 +62,41 @@ public class RegularVMView {
         JPanel monnersPanel3 = new JPanel(new GridLayout(2, 1));
         JPanel monnersPanel4 = new JPanel(new GridLayout(2, 1));
 
+        JLabel totalMoney = new JLabel();
+        totalMoney.setText("Total Payment: 0");
+
         JButton fiveHundred = new JButton("500");
+        fiveHundred.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                updateTotalMoney(500, totalMoney);
+                panel.revalidate();
+                panel.repaint();
+            }
+        });
+
         JButton twoHundred = new JButton("200");
         
         JButton oneHundred = new JButton("100");
+
         JButton fifty = new JButton("50");
         
         JButton twenty = new JButton("20");
+
         JButton ten = new JButton("10");
         
         JButton five = new JButton("5");
+
         JButton one = new JButton("1");
 
         monnersPanel1.add(fiveHundred);
         monnersPanel1.add(twoHundred);
-        
         monnersPanel2.add(oneHundred);
         monnersPanel2.add(fifty);
-        
         monnersPanel3.add(twenty);
         monnersPanel3.add(ten);
-
         monnersPanel4.add(five);
         monnersPanel4.add(one);
-        
-        JPanel totalMonners = new JPanel(new FlowLayout());
-        JLabel totalMoney = new JLabel();
         
         JButton proceedButton = new JButton("Proceed");
         proceedButton.setFocusable(false);
@@ -99,7 +108,7 @@ public class RegularVMView {
         });
 
         // JButton
-        panel.add(totalMonners);
+        panel.add(totalMoney);
         panel.add(monnersPanel1);
         panel.add(monnersPanel2);
         panel.add(monnersPanel3);
@@ -117,6 +126,11 @@ public class RegularVMView {
     public JPanel maintenanceMenu(){
         JPanel panel = new JPanel();
         return panel;
+    }
+
+    public void updateTotalMoney(int amount, JLabel label){
+        int updatedMoney = controller.updateTotalPayment(amount);
+        label.setText("Total Payment: " + updatedMoney);
     }
 
 }

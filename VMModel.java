@@ -33,4 +33,8 @@ public class VMModel{
     public int getPayment(){
         return this.paymentTotal;
     }
+
+    public void setPayment(int amount){
+        this.paymentTotal = amount;
+    }
 }
