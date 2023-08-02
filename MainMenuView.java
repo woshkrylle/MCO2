@@ -1,15 +1,11 @@
 import javax.swing.*;
 import javax.swing.text.Style;
-//test if eto nga
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-
 public class MainMenuView {
     private JPanel mainPanel, createPanel, itemPanel;
-    private ArrayList<String> tempItemList = new ArrayList<>();
-    private ArrayList<ArrayList<Item>> tempInventory = new ArrayList<>();
-    private int tempItemCount = 0;
+    private ArrayList<JLabel> itemLabels = new ArrayList<>();
     private Controller controller;
 
     /**
@@ -93,11 +89,18 @@ public class MainMenuView {
      * 
      */
     private JPanel InitializeCreatePanel(){
-        JPanel panel = new JPanel(new FlowLayout());
-        
+        JPanel panel = new JPanel(new GridLayout(2,1));
+
+        JPanel inventoryPanel = new JPanel();
+        inventoryPanel.setLayout(new BoxLayout(inventoryPanel, BoxLayout.Y_AXIS));
+        JPanel itemPanel = new JPanel(new FlowLayout());
+
         JTextField itemName = new JTextField("Name");
         itemName.setColumns(15);
-
+        
+        JLabel lbl = new JLabel();
+        lbl.setText("Slots Filled: "+ controller.getSlotCount());
+        
         JButton submitButton = new JButton("Add Item");
         submitButton.setFocusable(false);
         submitButton.addActionListener(new ActionListener(){
@@ -105,39 +108,37 @@ public class MainMenuView {
             public void actionPerformed(ActionEvent e){
                 String name = itemName.getText();
                 
-                if(!tempItemList.contains(name)){
-                    System.out.println(tempItemCount);
-                    tempItemCount++;
-                    System.out.println(tempItemCount);
-                    ArrayList<Item> itemType = new ArrayList<>();
-                    tempInventory.add(itemType);
-                    tempItemList.add(name);
+                if(!controller.checkForItem(name)){
+                    controller.newItemListEntry(name);
                     controller.getCardLayout().show(controller.getFrame().getContentPane(), "Item Card");
-                }
+                    lbl.setText("Slots Filled: " + controller.getSlotCount());
+                    addItemCounter(name, inventoryPanel);
+                    inventoryPanel.revalidate();
+                    inventoryPanel.repaint();
+                }else{
+                    controller.addItemToInventory(name);
+                    // JLabel newLabel = new JLabel(name + ": " + controller.getItemCount(name));
 
-                //pass the name to the controller by calling a controller method
+                }
             }
         });
         
-        JButton backButton = new JButton("Cancel");
-        backButton.setFocusable(false);
-        backButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                
-            }
-        });
-
         JButton proceedButton = new JButton("Proceed");
         proceedButton.setFocusable(false);
+        proceedButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                controller.getCardLayout().show(controller.getFrame().getContentPane(), "Main Card");
+            }
+        });
         
-        JLabel lbl = new JLabel();
-        
-        
-        panel.add(itemName);
-        panel.add(submitButton);
-        panel.add(backButton);
+        inventoryPanel.add(lbl);
+        itemPanel.add(itemName);
+        itemPanel.add(submitButton);
+        itemPanel.add(proceedButton);
 
+        panel.add(itemPanel);
+        panel.add(inventoryPanel);
         return panel;
     }
 
@@ -180,8 +181,8 @@ public class MainMenuView {
                 int price = Integer.parseInt(priceTextField.getText());
                 int calories = Integer.parseInt(calorieTextField.getText());
                 String process = processTextField.getText();
-                boolean independence = Boolean.parseBoolean(independenceTextField.getText());
-
+                boolean independence = Boolean.parseBoolean((independenceTextField.getText()).toLowerCase());
+                controller.addItemToInventory(price, calories, process, independence);
                 controller.getCardLayout().show(controller.getFrame().getContentPane(), "Create Card");
             }
         });
@@ -198,7 +199,10 @@ public class MainMenuView {
     /**
      * 
      */
-    public void Open(){
+    public void addItemCounter(String name, JPanel panel){
+        JLabel newLabel = new JLabel();
+        newLabel.setText(name+": 1");
+        panel.add(newLabel);
     }
 
     

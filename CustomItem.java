@@ -6,7 +6,7 @@ import java.util.*;
 *	@author Kurt Justine Hugo and Nauj Agbayani
 *	@version 1.2
 */
-public class Transaction {
+public class CustomItem {
     private ArrayList<Item> cart = new ArrayList<>();
     private int itemCount = 0, priceTotal = 0, caloriesTotal = 0, paymentTotal = 0;
 /**

@@ -75,14 +75,7 @@ public class Controller {
         this.frame.add(panel);
     }
 
-    /**
-     * Takes the collection of items initialized in the
-     * main menu and stores them to the model.
-     * @param ArrayList<ArrayList<Items>>
-     */
-    public void saveInventory(ArrayList<ArrayList<Item>> Inventory){
-        
-    }
+    
 
     public JFrame getFrame(){
         return this.frame;
@@ -91,5 +84,55 @@ public class Controller {
     public CardLayout getCardLayout(){
         return this.cardLayout;
     }
+
+    public boolean checkForItem(String itemName){
+        if(vmModel.getItemList().contains(itemName)) return true;
+        else return false;
+    }
+
+    public void newItemListEntry(String name){
+        vmModel.getItemList().add(name);
+    }
+
+    /**
+     * This adds an already existing item to the inventory by "Cloning"
+     * the first item of that type and adding the clone to the inventory
+     * @param name
+     */
+    public void addItemToInventory(String name){
+        int index = vmModel.getItemList().indexOf(name);
+        int price = vmModel.getInventory().get(index).get(0).getPrice();
+        int calories = vmModel.getInventory().get(index).get(0).getCalories();
+        String process = vmModel.getInventory().get(index).get(0).getProcess();
+        boolean independence = vmModel.getInventory().get(index).get(0).getIndependence();
+        Item existingItem = new Item(name, price, calories, process, independence);
+        vmModel.getInventory().get(index).add(existingItem);
+    }
+
+    /**
+     * This adds a new Item to the inventory
+     * @param price
+     * @param calories
+     * @param process
+     * @param independence
+     */
+    public void addItemToInventory(int price, int calories, String process, boolean independence){
+        String name = vmModel.getItemList().get(vmModel.getItemList().size()-1);
+        Item newItem = new Item (name, price, calories, process, independence);
+        ArrayList<Item> inventoryRow = new ArrayList<>();
+        inventoryRow.add(newItem);
+        vmModel.getInventory().add(inventoryRow);
+    }
+
+    public int getSlotCount(){
+        return vmModel.getItemList().size();
+    }
+
+    public int getItemCount(String name){
+        int i = vmModel.getItemList().indexOf(name);
+        return vmModel.getInventory().get(i).size();
+    }
+
+    
 }
 

@@ -24,7 +24,7 @@ public class Denominations {
 *	@param five number of five coins
 *   @param one number of one coins
 */
-    public Denominations(int fiveh,int  twoh,int  oneh,int  fifty,int  twenty,int  ten,int  five){
+    public Denominations(int fiveh,int  twoh,int  oneh,int  fifty,int  twenty,int  ten,int  five,int one){
         this.fiveHundred = fiveh;
        this.twoHundred = twoh;
         this.oneHundred = oneh;
@@ -32,6 +32,7 @@ public class Denominations {
         this.twenty = twenty;
         this.ten = ten;
         this.five = five;
+        this.one = one;
     }
 
 /**

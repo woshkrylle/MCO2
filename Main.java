@@ -13,15 +13,17 @@ public class Main {
     public static void main(String[] args){
         Controller controller = new Controller();
 
-        MainMenuView mm = new MainMenuView(controller);
-        RegularVMView rvmv = new RegularVMView(controller);
-        SpecialVMView svmv = new SpecialVMView(controller);
         VMModel vmm = new VMModel(controller);
-
-        controller.setMainMenu(mm);
-        controller.setRVMView(rvmv);
-        controller.setSVMView(svmv);
         controller.setVMModel(vmm);
+        
+        MainMenuView mm = new MainMenuView(controller);
+        controller.setMainMenu(mm);
+
+        RegularVMView rvmv = new RegularVMView(controller);
+        controller.setRVMView(rvmv);
+        
+        SpecialVMView svmv = new SpecialVMView(controller);
+        controller.setSVMView(svmv);
 
         controller.Run();
     }

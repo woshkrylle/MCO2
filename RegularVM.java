@@ -5,7 +5,5 @@ public class RegularVM {
         this.controller = controller;
     }
 
-    public void addItem(){
-        
-    }
+    
 }
