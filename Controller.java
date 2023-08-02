@@ -48,6 +48,7 @@ public class Controller {
 
     public void testVM(){
         if(existing){
+            rvmView.initializeItemButtons();
             cardLayout.show(frame.getContentPane(), "Vending Features Card");
         }else{
             String message = "There is no existing vending machine";
@@ -132,6 +133,10 @@ public class Controller {
         return vendingMachine.getInventory().get(i).size();
     }
 
+    public int getItemCount(int index){
+        return vendingMachine.getInventory().get(index).size();
+    }
+
     public int getItemIndex(String name){
         return vendingMachine.getItemList().indexOf(name);
     }
@@ -147,6 +152,14 @@ public class Controller {
         }else{
             cardLayout.show(frame.getContentPane(), "Regular Items Card");
         }
+    }
+
+    public String getItemName(int index){
+        return vendingMachine.itemList.get(index);
+    }
+
+    public void removeItem(int index){
+        vendingMachine.getInventory().get(index).remove(vendingMachine.getInventory().get(index).size()-1);
     }
 }
 
