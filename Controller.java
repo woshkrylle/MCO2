@@ -50,6 +50,7 @@ public class Controller {
     public void testVM(){
         if(existing){
             rvmView.initializeItemButtons();
+            svmView.initializeItemButtons();
             cardLayout.show(frame.getContentPane(), "Vending Features Card");
         }else{
             String message = "There is no existing vending machine";
@@ -176,8 +177,10 @@ public class Controller {
 
     public void showItemMenu(){
         if(vendingMachine instanceof SpecialVMModel){
-            //cardLayout.show(frame.getContentPane(), "Special Items Card");
+            cardLayout.show(frame.getContentPane(), "Special Items Card");
+            svmView.updateLabels();
         }else{
+            rvmView.updateLabels();
             cardLayout.show(frame.getContentPane(), "Regular Items Card");
         }
     }
@@ -207,7 +210,7 @@ public class Controller {
         return vendingMachine.getCalories();
     }
     
-    public boolean checkIndependence(int index){
+    public boolean getItemIndependence(int index){
         if(vendingMachine.getInventory().get(index).get(0).getIndependence()) return true;
         else return false;
     }

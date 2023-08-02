@@ -163,7 +163,6 @@ public class RegularVMView {
             @Override
             public void actionPerformed(ActionEvent e){
                 controller.showItemMenu();
-                updateLabels();
                 itemMenu.revalidate();
                 itemMenu.repaint();
             }
