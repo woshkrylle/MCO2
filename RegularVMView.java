@@ -86,7 +86,7 @@ public class RegularVMView {
         monnersPanel4.add(one);
         
         JPanel totalMonners = new JPanel(FlowLayout());
-        JLabel totalMoney = new JLabel()
+        JLabel totalMoney = new JLabel();
         totalMoney.setText("Remaining Balace: "+  VMModel.getPayment());
         
         // JButton
