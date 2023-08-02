@@ -398,24 +398,31 @@ public class SpecialVMView {
         JLabel process1 = new JLabel();
         processLabels.add(process1);
         panel.add(process1);
+
         JLabel process2 = new JLabel();
         processLabels.add(process2);
         panel.add(process2);
+
         JLabel process3 = new JLabel();
         processLabels.add(process3);
         panel.add(process3);
+
         JLabel process4 = new JLabel();
         processLabels.add(process4);
         panel.add(process4);
+
         JLabel process5 = new JLabel();
         processLabels.add(process5);
         panel.add(process5);
+
         JLabel process6 = new JLabel();
         processLabels.add(process6);
         panel.add(process6);
+
         JLabel process7 = new JLabel();
         processLabels.add(process7);
         panel.add(process7);
+        
         JLabel process8 = new JLabel();
         processLabels.add(process8);
         panel.add(process8);
