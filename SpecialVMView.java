@@ -11,4 +11,7 @@ public class SpecialVMView {
         this.spcFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.spcFrame.setSize(480, 360);
     }
+
+    //JPanel CustomizePanel
+    //JPanel Processing
 }

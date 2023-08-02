@@ -144,6 +144,10 @@ public class Controller {
         return vmModel.getItemList().indexOf(name);
     }
 
+    public int addMoney(int prevbal, int add){
+        
+    }
+
     
 }
 

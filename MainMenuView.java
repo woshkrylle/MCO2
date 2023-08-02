@@ -80,7 +80,6 @@ public class MainMenuView {
         panel.add(createButton);
         panel.add(testButton);
         panel.add(exitButton);
-        panel.setVisible(true);
 
         return panel;
     }
