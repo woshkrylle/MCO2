@@ -117,8 +117,9 @@ public class MainMenuView {
                     inventoryPanel.repaint();
                 }else{
                     controller.addItemToInventory(name);
-                    // JLabel newLabel = new JLabel(name + ": " + controller.getItemCount(name));
-
+                    updateItemCounter(name);
+                    inventoryPanel.revalidate();
+                    inventoryPanel.repaint();
                 }
             }
         });
@@ -203,6 +204,13 @@ public class MainMenuView {
         JLabel newLabel = new JLabel();
         newLabel.setText(name+": 1");
         panel.add(newLabel);
+        itemLabels.add(newLabel);
+    }
+
+    public void updateItemCounter(String name){
+        int index = controller.getItemIndex(name);
+        JLabel label = itemLabels.get(index);
+        label.setText(name+": "+controller.getItemCount(name));
     }
 
     

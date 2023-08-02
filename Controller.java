@@ -133,6 +133,10 @@ public class Controller {
         return vmModel.getInventory().get(i).size();
     }
 
+    public int getItemIndex(String name){
+        return vmModel.getItemList().indexOf(name);
+    }
+
     
 }
 
