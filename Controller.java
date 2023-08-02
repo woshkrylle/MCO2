@@ -83,8 +83,10 @@ public class Controller {
             vmModel.getItemList().add(name);
             cardLayout.show(frame.getContentPane(), "Item Card");
             return true;
+        }else{
+            return false;
+            JOptionPane.showMessageDialog(null, "Available slots are already filled", "Error", JOptionPane.WARNING_MESSAGE);
         }
-        return false;
     }
 
     /**
@@ -103,6 +105,7 @@ public class Controller {
             vmModel.getInventory().get(index).add(existingItem);
             return true;
         }else{
+            JOptionPane.showMessageDialog(null, "This slot is already full", "Error", JOptionPane.WARNING_MESSAGE);
             return false;
         }
     }
