@@ -298,6 +298,17 @@ public class Controller {
             removeItem(index);
         }
     }
+
+    public void printProcesses(ArrayList<JLabel> labelList){
+        ArrayList<String> processes = ((SpecialVMModel)vendingMachine).getProcesses();
+        for(int i = 0; i<processes.size(); i++){
+            labelList.get(i).setText(processes.get(i));
+        }
+    }
+
+    public CustomItem getCustomItem(){
+        return ((SpecialVMModel)vendingMachine).getCustomItem();
+    }
 }
 
 

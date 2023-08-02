@@ -10,6 +10,10 @@ public class SpecialVMModel extends VMModel {
         return this.customItem;
     }
 
+    public ArrayList<String> getProcesses(){
+        return this.processes;
+    }
+
     public void addToCart(Item item){
         customItem.addItem(item);
         if(!processes.contains(item.getProcess())) processes.add(item.getProcess());

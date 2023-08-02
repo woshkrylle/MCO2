@@ -9,7 +9,8 @@ public class SpecialVMView {
     private JPanel specialPanel, basePanel, processPanel;
     private ArrayList<JButton> buttonList = new ArrayList<>();
     private ArrayList<JLabel> labelList = new ArrayList<>();
-    ArrayList<JButton> customButtons = new ArrayList<>();
+    private ArrayList<JButton> customButtons = new ArrayList<>();
+    private ArrayList<JLabel> processLabels = new ArrayList<>();
     private Controller controller;
 
     public SpecialVMView(Controller controller){
@@ -20,6 +21,7 @@ public class SpecialVMView {
 
         controller.getFrame().add(specialPanel, "Special Items Card");
         controller.getFrame().add(basePanel, "Custom Card");
+        controller.getFrame().add(processPanel, "Process Card");
     }
 
     private JPanel itemMenu(){
@@ -250,7 +252,10 @@ public class SpecialVMView {
         proceedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                controller.getCardLayout().show(controller.getFrame().getContentPane(), "null");
+                controller.getCardLayout().show(controller.getFrame().getContentPane(), "Process Card");
+                controller.printProcesses(processLabels);
+                processPanel.revalidate();
+                processPanel.repaint();
             }
         });
 
@@ -389,15 +394,44 @@ public class SpecialVMView {
     {
         JPanel panel = new JPanel(new GridLayout(8, 1));
 
-        // JLabel process1 = new JLabel(controller.getProcess(index));
-        // JLabel process2 = new JLabel(controller.getProcess(index));
-        // JLabel process3 = new JLabel(controller.getProcess(index));
-        // JLabel process4 = new JLabel(controller.getProcess(index));
-        // JLabel process5 = new JLabel(controller.getProcess(index));
-        // JLabel process6 = new JLabel(controller.getProcess(index));
-        // JLabel process7 = new JLabel(controller.getProcess(index));
-        // JLabel process8 = new JLabel(controller.getProcess(index));
+        
+        JLabel process1 = new JLabel();
+        processLabels.add(process1);
+        panel.add(process1);
+        JLabel process2 = new JLabel();
+        processLabels.add(process2);
+        panel.add(process2);
+        JLabel process3 = new JLabel();
+        processLabels.add(process3);
+        panel.add(process3);
+        JLabel process4 = new JLabel();
+        processLabels.add(process4);
+        panel.add(process4);
+        JLabel process5 = new JLabel();
+        processLabels.add(process5);
+        panel.add(process5);
+        JLabel process6 = new JLabel();
+        processLabels.add(process6);
+        panel.add(process6);
+        JLabel process7 = new JLabel();
+        processLabels.add(process7);
+        panel.add(process7);
+        JLabel process8 = new JLabel();
+        processLabels.add(process8);
+        panel.add(process8);
+
+        JButton checkOutButton = new JButton("Checkout");
+        checkOutButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                controller.checkOut();
+                controller.getCardLayout().show(controller.getFrame().getContentPane(), "Main Card");
+            }
+        });
+        panel.add(checkOutButton);
 
         return panel;
     };
+
+
 }
