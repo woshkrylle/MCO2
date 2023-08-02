@@ -128,7 +128,7 @@ public class Controller {
 
     /**
      * getSlotCount gets the size of the item list as shown in the vending machine model,
-     * essentially serving as a getter method for the numbe rof unique items sold in the vending machine
+     * essentially serving as a getter method for the number of unique items sold in the vending machine
      * @return 
      */
     public int getSlotCount(){
