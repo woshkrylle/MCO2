@@ -6,6 +6,7 @@ public class Controller {
     private MainMenuView mainMenu;
     private RegularVMView rvmView;
     private SpecialVMView svmView;
+    private MaintenanceView mntnView;
     private VMModel vendingMachine;
     private JFrame frame;
     private CardLayout cardLayout;
@@ -46,6 +47,10 @@ public class Controller {
      */
     public void setSVMView(SpecialVMView svmView){
         this.svmView = svmView;
+    }
+
+    public void setMNTNView(MaintenanceView mntnView){
+        this.mntnView = mntnView;
     }
 
     /**
@@ -431,9 +436,11 @@ public class Controller {
         frame.repaint();
     }
 
+    public int getItemPrice(int index){
+        return vendingMachine.getInventory().get(index).get(0).getPrice();
+    }
+
     public CustomItem getCustomItem(){
         return ((SpecialVMModel)vendingMachine).getCustomItem();
     }
 }
-
-

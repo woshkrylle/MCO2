@@ -16,10 +16,8 @@ public class RegularVMView {
         this.itemMenu = itemMenu();
 
         controller.getFrame().add(vendingMain, "Vending Features Card");
-        controller.getFrame().add(cashPanel, "Receive Money Card");
+        controller.getFrame().add(cashPanel, "Receive Payment Card");
         controller.getFrame().add(itemMenu, "Regular Items Card");
-        
-        
     }
 
     private JPanel vendingMainMenu(){
@@ -29,7 +27,7 @@ public class RegularVMView {
         vendingButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                controller.getCardLayout().show(controller.getFrame().getContentPane(), "Receive Money Card");
+                controller.getCardLayout().show(controller.getFrame().getContentPane(), "Receive Payment Card");
             }
         });
         
@@ -37,7 +35,7 @@ public class RegularVMView {
         maintenanceButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                controller.getCardLayout().show(controller.getFrame().getContentPane(), "Maintenancee features Card");
+                controller.getCardLayout().show(controller.getFrame().getContentPane(), "Maintenance Features Card");
             }
         });
 
