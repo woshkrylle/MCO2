@@ -345,21 +345,21 @@ public class RegularVMView {
     public void updateItemButtons(){
         switch(controller.getSlotCount()){
             case 8:
-                buttonList.get(7).setText(controller.getItemName(7)+": "+controller.getItemCount(7)+"/10");
+                buttonList.get(7).setText(controller.getItemName(7)+": P"+controller.getItemPrice(7) +" ("+controller.getItemCount(7)+"/10)");
             case 7:
-                buttonList.get(6).setText(controller.getItemName(6)+": "+controller.getItemCount(6)+"/10");
+                buttonList.get(6).setText(controller.getItemName(6)+": P"+controller.getItemPrice(6) +" ("+controller.getItemCount(6)+"/10)");
             case 6:
-                buttonList.get(5).setText(controller.getItemName(5)+": "+controller.getItemCount(5)+"/10");
+                buttonList.get(5).setText(controller.getItemName(5)+": P"+controller.getItemPrice(5) +" ("+controller.getItemCount(5)+"/10)");
             case 5:
-                buttonList.get(4).setText(controller.getItemName(4)+": "+controller.getItemCount(4)+"/10");
+                buttonList.get(4).setText(controller.getItemName(4)+": P"+controller.getItemPrice(4) +" ("+controller.getItemCount(4)+"/10)");
             case 4:
-                buttonList.get(3).setText(controller.getItemName(3)+": "+controller.getItemCount(3)+"/10");
+                buttonList.get(3).setText(controller.getItemName(3)+": P"+controller.getItemPrice(3) +" ("+controller.getItemCount(3)+"/10)");
             case 3:
-                buttonList.get(2).setText(controller.getItemName(2)+": "+controller.getItemCount(2)+"/10");
+                buttonList.get(2).setText(controller.getItemName(2)+": P"+controller.getItemPrice(2) +" ("+controller.getItemCount(2)+"/10)");
             case 2:
-                buttonList.get(1).setText(controller.getItemName(1)+": "+controller.getItemCount(1)+"/10");
+                buttonList.get(1).setText(controller.getItemName(1)+": P"+controller.getItemPrice(1) +" ("+controller.getItemCount(1)+"/10)");
             case 1:
-                buttonList.get(0).setText(controller.getItemName(0)+": "+controller.getItemCount(0)+"/10");
+                buttonList.get(0).setText(controller.getItemName(0)+": P"+controller.getItemPrice(0) +" ("+controller.getItemCount(0)+"/10)");
             case 0:
                 break;
         }
