@@ -443,4 +443,103 @@ public class Controller {
     public CustomItem getCustomItem(){
         return ((SpecialVMModel)vendingMachine).getCustomItem();
     }
+
+    public int getDenominationCount(int index){
+        switch(index){
+            case 8:
+                return vendingMachine.getMachineBalance().getOne();
+            case 7:
+                return vendingMachine.getMachineBalance().getFive();
+            case 6:
+                return vendingMachine.getMachineBalance().getTen();
+            case 5:
+                return vendingMachine.getMachineBalance().getTwenty();
+            case 4:
+                return vendingMachine.getMachineBalance().getFifty();
+            case 3:
+                return vendingMachine.getMachineBalance().getOneHundred();
+            case 2:
+                return vendingMachine.getMachineBalance().getTwoHundred();
+            case 1:
+                return vendingMachine.getMachineBalance().getFiveHundred();
+            default:
+                return 0;
+        }
+    }
+
+    public void addDenomination(int denomination){
+        int current;
+        switch(denomination){
+            case 500:
+                current = vendingMachine.getMachineBalance().getFiveHundred();
+                vendingMachine.getMachineBalance().setFiveHundred(current+1);
+                break;
+            case 200:
+                current = vendingMachine.getMachineBalance().getTwoHundred();
+                vendingMachine.getMachineBalance().setTwoHundred(current+1);
+                break;
+            case 100:
+                current = vendingMachine.getMachineBalance().getOneHundred();
+                vendingMachine.getMachineBalance().setOneHundred(current+1);
+                break;
+            case 50:
+                current = vendingMachine.getMachineBalance().getFifty();
+                vendingMachine.getMachineBalance().setFifty(current+1);
+                break;
+            case 20:
+                current = vendingMachine.getMachineBalance().getTwenty();
+                vendingMachine.getMachineBalance().setTwenty(current+1);
+                break;
+            case 10:
+                current = vendingMachine.getMachineBalance().getTen();
+                vendingMachine.getMachineBalance().setTen(current+1);
+                break;
+            case 5:
+                current = vendingMachine.getMachineBalance().getFive();
+                vendingMachine.getMachineBalance().setFive(current+1);
+                break;
+            case 1:
+                current = vendingMachine.getMachineBalance().getOne();
+                vendingMachine.getMachineBalance().setOne(current+1);
+                break;
+        }
+    }
+
+    public void subtractDenomination(int denomination){
+        int current;
+        switch(denomination){
+            case 500:
+                current = vendingMachine.getMachineBalance().getFiveHundred();
+                vendingMachine.getMachineBalance().setFiveHundred(current-1);
+                break;
+            case 200:
+                current = vendingMachine.getMachineBalance().getTwoHundred();
+                vendingMachine.getMachineBalance().setTwoHundred(current-1);
+                break;
+            case 100:
+                current = vendingMachine.getMachineBalance().getOneHundred();
+                vendingMachine.getMachineBalance().setOneHundred(current-1);
+                break;
+            case 50:
+                current = vendingMachine.getMachineBalance().getFifty();
+                vendingMachine.getMachineBalance().setFifty(current-1);
+                break;
+            case 20:
+                current = vendingMachine.getMachineBalance().getTwenty();
+                vendingMachine.getMachineBalance().setTwenty(current-1);
+                break;
+            case 10:
+                current = vendingMachine.getMachineBalance().getTen();
+                vendingMachine.getMachineBalance().setTen(current-1);
+                break;
+            case 5:
+                current = vendingMachine.getMachineBalance().getFive();
+                vendingMachine.getMachineBalance().setFive(current-1);
+                break;
+            case 1:
+                current = vendingMachine.getMachineBalance().getOne();
+                vendingMachine.getMachineBalance().setOne(current-1);
+                break;
+        }
+    }
 }
