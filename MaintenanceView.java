@@ -30,7 +30,10 @@ public class MaintenanceView {
         controller.getFrame().add(collect, "Collect Money Card");
         controller.getFrame().add(changePrice, "Change Price Card");
     }
-
+/**
+ * menuPanel() is the menu for maintenance features of the vending machine
+ * which includes restocking items and bills, collecting money, etc. 
+ */
     private JPanel menuPanel(){
         JPanel panel = new JPanel(new GridLayout(5,1));
 
@@ -85,6 +88,11 @@ public class MaintenanceView {
         return panel;
     }
 
+    /**
+     * replenishStockPanel() shows the same number of previously instantiated items. Upon clicking the buttons,
+     * these items are restocked until the user sees fit.
+     * 
+     */
     public JPanel replenishStockPanel(){
         JPanel panel = new JPanel(new GridLayout(3, 3));
 
@@ -126,6 +134,11 @@ public class MaintenanceView {
         return panel;
     }
 
+    
+    /**
+     * initializeRestockButtons() adds the labels to the buttons and updates upon clicking the button as well.
+     * These serve as the user's guide to how many stocks are being put.
+     */
     public void initializeRestockButtons(){
         switch(controller.getSlotCount()){
             case 8:
@@ -204,7 +217,11 @@ public class MaintenanceView {
                 break;
         }
     }
-
+    /**
+     * replenishBalancePanel() is almost the same as restocking items; although this is mroe focused on denominations
+     * for use by the machine when dispensing change
+     * 
+     */
     public JPanel replenishBalancePanel(){
         JPanel panel = new JPanel(new GridLayout(5, 1));
 
@@ -310,6 +327,12 @@ public class MaintenanceView {
         return panel;
     }
 
+
+    /**
+     * collectMoneyPanel() creates the GUI which shows the amount of money gathered per denomination
+     * then gets taken by the maintenance people.
+     * 
+     */
     public JPanel collectMoneyPanel(){
         JPanel panel = new JPanel(new GridLayout(5, 1));
 
@@ -414,7 +437,11 @@ public class MaintenanceView {
         panel.setVisible(true);
         return panel;
     }
-
+    /**
+     * changePricePanel() creates a GUI that allows the maintenance staff to change the price of an item and do the
+     * same for every item in the same row in inventory
+     * 
+     */
     public JPanel changePricePanel(){
         JPanel panel = new JPanel(new GridLayout(3, 3));
 
@@ -454,6 +481,11 @@ public class MaintenanceView {
         return panel;
     }
 
+    
+    /**
+     * initializeChangePriceButtons() creates a GUI that displays the info of a button. 
+     * It also presents the price of the item.
+     */
     public void initializeChangePriceButtons(){
         switch(controller.getSlotCount()){
             case 8:
