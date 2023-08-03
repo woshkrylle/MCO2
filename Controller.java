@@ -202,6 +202,17 @@ public class Controller {
 
     }
 
+    public void replenishChange(){
+        vendingMachine.machineBalance.setFiveHundred(100);
+        vendingMachine.machineBalance.setTwoHundred(100);
+        vendingMachine.machineBalance.setOneHundred(100);
+        vendingMachine.machineBalance.setFifty(100);
+        vendingMachine.machineBalance.setTwenty(100);
+        vendingMachine.machineBalance.setTen(100);
+        vendingMachine.machineBalance.setFive(100);
+        vendingMachine.machineBalance.setOne(100);
+    }
+
     public int getPaymentTotal(){
         return vendingMachine.getPayment();
     }
