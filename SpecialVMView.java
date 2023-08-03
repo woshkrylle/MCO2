@@ -4,7 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
-
+/**
+ * This class is one of the Views of the GUI responsible with showing the item menu
+ * of the special vending machine, the custom item maker, and the preparation process panel.
+ */
 public class SpecialVMView {
     private JPanel specialPanel, basePanel, processPanel;
     private ArrayList<JButton> buttonList = new ArrayList<>();
@@ -13,6 +16,10 @@ public class SpecialVMView {
     private ArrayList<JLabel> processLabels = new ArrayList<>();
     private Controller controller;
 
+    /**
+     * The constructor for the class. Initializes the state of the panels and adds them to the JFrame object
+     * @param controller
+     */
     public SpecialVMView(Controller controller){
         this.controller = controller;
         this.specialPanel = itemMenu();
@@ -24,6 +31,10 @@ public class SpecialVMView {
         controller.getFrame().add(processPanel, "Process Card");
     }
 
+    /**
+     * Initializes the panel for the item Menu of the special vending machine
+     * @return the finalized panel
+     */
     private JPanel itemMenu(){
         JPanel panel = new JPanel(new GridLayout(3, 4));
 
@@ -87,6 +98,9 @@ public class SpecialVMView {
         return panel;
     }
 
+    /**
+     * Updates the state of the buttons of the Item Menu
+     */
     public void updateItemButtons(){
         switch(controller.getSlotCount()){
             case 8:
@@ -110,11 +124,18 @@ public class SpecialVMView {
         }
     }
 
+    /**
+     * Updates the state of the labels in the item creation panel
+     */
     public void updateLabels(){
         labelList.get(0).setText("Total Change: "+ controller.getPaymentTotal());
         labelList.get(1).setText("Total Calories: "+ controller.getCaloriesTotal());
     }
 
+    /**
+     * Initializes the function of the buttons and their text label after their creation
+     * to represent only the existing items that was given through user input
+     */
     public void initializeItemButtons(){
         switch(controller.getSlotCount()){
             case 8:
@@ -219,8 +240,10 @@ public class SpecialVMView {
         }
     }
 
-    
-
+    /**
+     * Initializes the panel of your Item Menu of thee
+     * @return
+     */
     private JPanel baseItems()
     {
         JPanel panel = new JPanel(new GridLayout(9, 1));
@@ -265,6 +288,10 @@ public class SpecialVMView {
         return panel;
     }
 
+    /**
+     * Initializes the function of the buttons and their text label after their creation
+     * to represent only the existing items that was given through user input
+     */
     public void initializeCustomButtons(){
         switch(controller.getSlotCount()){
             case 8:

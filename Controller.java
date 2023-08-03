@@ -2,6 +2,10 @@ import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 
+/**
+ * The Controller class manages the interactions between the GUI views and the
+ * VMModel (vending machine model) to control the vending machine application.
+ */
 public class Controller {
     private MainMenuView mainMenu;
     private RegularVMView rvmView;
@@ -27,7 +31,7 @@ public class Controller {
 
     /**
      * Initializes the reference variable to the Main Menu View
-     * @param mainMenu
+     * @param mainMenu The reference of the MainMenuView object
      */
     public void setMainMenu(MainMenuView mainMenu){
         this.mainMenu = mainMenu;
@@ -35,7 +39,7 @@ public class Controller {
 
     /**
      * Initializes the reference variable to the Vending Machine View
-     * @param rvmView
+     * @param rvmView The reference of the RegularVMView object
      */
     public void setRVMView(RegularVMView rvmView){
         this.rvmView = rvmView;
@@ -43,12 +47,16 @@ public class Controller {
 
     /**
      * Initializes the reference variable to the Special Vending Machine View
-     * @param svmView
+     * @param svmView The reference of the SpecialVMView object
      */
     public void setSVMView(SpecialVMView svmView){
         this.svmView = svmView;
     }
 
+    /**
+     * Initializes the reference variable to the Maintenance View
+     * @param mntnView The reference of the MaintenanceView object
+     */
     public void setMNTNView(MaintenanceView mntnView){
         this.mntnView = mntnView;
     }
@@ -98,7 +106,7 @@ public class Controller {
     }
 
     /**
-     * 
+     * Returns the reference to the JFrame object
      * @return the reference to the JFrame object of the GUI
      */
     public JFrame getFrame(){
@@ -106,7 +114,7 @@ public class Controller {
     }
 
     /**
-     * 
+     * returns the Layout Manager of the GUI
      * @return the reference to the CardLayout of the GUI
      */
     public CardLayout getCardLayout(){
@@ -126,7 +134,7 @@ public class Controller {
     /**
      * If there are less than 8 items in the slots, creates a new
      * unique item and adds it to the item list and inventory
-     * @param name
+     * @param name the name of the new item
      * @return  true or false of whether there is less than 8 items or not
      */
     public boolean newItemListEntry(String name){
@@ -143,14 +151,14 @@ public class Controller {
     /**
      * This adds an already existing item to the inventory by "Cloning"
      * the first item of that type and adding the clone to the inventory
-     * @param name
+     * @param name the name of the item to be added
      */
     public boolean addItemToInventory(String name){
         int index = vendingMachine.getItemList().indexOf(name);
         if(vendingMachine.getInventory().get(index).size()<10){
-            int price = vendingMachine.getInventory().get(index).get(0).getPrice();
-            int calories = vendingMachine.getInventory().get(index).get(0).getCalories();
-            String process = vendingMachine.getInventory().get(index).get(0).getProcess();
+            int price = vendingMachine.getTemplate(index).getPrice();
+            int calories = vendingMachine.getTemplate(index).getCalories();
+            String process = vendingMachine.getTemplate(index).getProcess();
             Item existingItem = new Item(name, price, calories, process);
             vendingMachine.getInventory().get(index).add(existingItem);
             return true;
@@ -163,9 +171,9 @@ public class Controller {
     /**
      * This adds a new Item to the inventory, which is a 2d array of items where each new addition takes up
      * a new row upon being unique, and takes up the same row if duplicated.
-     * @param price 
-     * @param calories
-     * @param process
+     * @param price the price of the item
+     * @param calories the calories of the item
+     * @param process the preparation process of the item
      */
     public void addItemToInventory(int price, int calories, String process){
         String name = vendingMachine.getItemList().get(vendingMachine.getItemList().size()-1);
@@ -179,7 +187,7 @@ public class Controller {
     /**
      * getSlotCount gets the size of the item list as shown in the vending machine model,
      * essentially serving as a getter method for the number of unique items sold in the vending machine
-     * @return 
+     * @return the number of slots that has been filled
      */
     public int getSlotCount(){
         return vendingMachine.getItemList().size();
@@ -187,8 +195,8 @@ public class Controller {
 
     /**
      * returns how much there are of a specific item
-     * @param name
-     * @return
+     * @param name the name of the item
+     * @return how much there are of a specific item
      */
     public int getItemCount(String name){
         int i = vendingMachine.getItemList().indexOf(name);
@@ -197,8 +205,8 @@ public class Controller {
 
     /**
      * returns how much there are of a specific item
-     * @param index
-     * @return
+     * @param index the index of the item
+     * @return how much there are of a specific item
      */
     public int getItemCount(int index){
         return vendingMachine.getInventory().get(index).size();
@@ -206,8 +214,8 @@ public class Controller {
 
     /**
      * returns the index of an already existing item
-     * @param name
-     * @return
+     * @param name the name of the item
+     * @return the index of the item
      */
     public int getItemIndex(String name){
         return vendingMachine.getItemList().indexOf(name);
@@ -216,9 +224,9 @@ public class Controller {
     /**
      * Increments the value of the payment and the number of denominations
      * of that specific denomination in the vending machine 
-     * @param amount
-     * @param denomination
-     * @return
+     * @param amount the numger of bills/denominations
+     * @param denomination the type of bill/denomination
+     * @return the updated amount of payment
      */
     public int updateTotalPayment(int amount, int denomination){
         int initialAmmount = vendingMachine.getPayment();
@@ -267,9 +275,9 @@ public class Controller {
     }
 
     /**
-     * returns the index of an already existing item
-     * @param index
-     * @return
+     * returns the name of an already existing item
+     * @param index the index of the item
+     * @return the name of the unit
      */
     public String getItemName(int index){
         return vendingMachine.itemList.get(index);
@@ -279,16 +287,16 @@ public class Controller {
      * If the item that the user chose still has stock, this method will
      * remove the item from the inventory. It will also update the remaining
      * change, the total price, and the total calories of the transaction
-     * @param index
+     * @param index the index of the item
      */
     public void removeItem(int index){
-        if(vendingMachine.getPayment()>vendingMachine.getInventory().get(index).get(0).getPrice())
+        if(vendingMachine.getPayment()>vendingMachine.getTemplate(index).getPrice())
         if(vendingMachine.getInventory().get(index).size()>0){
             int currentPayment = vendingMachine.getPayment();
-            int price = vendingMachine.getInventory().get(index).get(0).getPrice();
+            int price = vendingMachine.getTemplate(index).getPrice();
             vendingMachine.setPayment(currentPayment - price);
             int currentCalories = vendingMachine.getCalories();
-            int itemCalories = vendingMachine.getInventory().get(index).get(0).getCalories();
+            int itemCalories = vendingMachine.getTemplate(index).getCalories();
             vendingMachine.setCalories(currentCalories+itemCalories);
             vendingMachine.getInventory().get(index).remove(vendingMachine.getInventory().get(index).size()-1);
         }
@@ -297,7 +305,7 @@ public class Controller {
 
     /**
      * returns the total payment or the remaining change of the user
-     * @return
+     * @return the total payment of the user
      */
     public int getPaymentTotal(){
         return vendingMachine.getPayment();
@@ -305,7 +313,7 @@ public class Controller {
 
     /**
      * returns the total amount of calories that the user has bought
-     * @return
+     * @return the total amount of calories
      */
     public int getCaloriesTotal(){
         return vendingMachine.getCalories();
@@ -409,12 +417,12 @@ public class Controller {
 
     /**
      * When customizing an order, it adds the item to the "cart"
-     * @param index
+     * @param index the index of the item
      */
     public void addItemToCart(int index){
-        if(vendingMachine.getPayment()>vendingMachine.getInventory().get(index).get(0).getPrice())
+        if(vendingMachine.getPayment()>vendingMachine.getTemplate(index).getPrice())
         if(vendingMachine.getInventory().get(index).size()>0){
-            Item item = vendingMachine.getInventory().get(index).get(0);
+            Item item = vendingMachine.getTemplate(index);
             ((SpecialVMModel)vendingMachine).addToCart(item);
             removeItem(index);
         }
@@ -423,7 +431,7 @@ public class Controller {
     /**
      * Updates the empty labels in the process panels to show
      * the processing of the custom item
-     * @param labelList
+     * @param labelList a list of JLabel reference objects
      */
     public void printProcesses(ArrayList<JLabel> labelList){
         ArrayList<String> processes = ((SpecialVMModel)vendingMachine).getProcesses();
@@ -434,14 +442,29 @@ public class Controller {
         frame.repaint();
     }
 
+    /**
+     * returns the price of an index
+     * @param index the index of the item
+     * @return the price of the item
+     */
     public int getItemPrice(int index){
-        return vendingMachine.getInventory().get(index).get(0).getPrice();
+        return vendingMachine.getTemplate(index).getPrice();
     }
 
+    /**
+     * returns the reference to the custom item order
+     * @return the reference to the custom item
+     */
     public CustomItem getCustomItem(){
         return ((SpecialVMModel)vendingMachine).getCustomItem();
     }
 
+    /**
+     * returns how much of a denomination the vending machine (or VMModel)
+     * has
+     * @param index the index of the denomination
+     * @return the amount of that specific donation
+     */
     public int getDenominationCount(int index){
         switch(index){
             case 8:
@@ -465,6 +488,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Increments the amount of a specific denomination by one
+     * @param denomination specifies which denomination is being added
+     */
     public void addDenomination(int denomination){
         int current;
         switch(denomination){
@@ -503,6 +530,10 @@ public class Controller {
         }
     }
 
+    /**
+     * decrements the amount of a specific documentation by one
+     * @param denomination the type of bill(denominaton)
+     */
     public void subtractDenomination(int denomination){
         int current;
         switch(denomination){
@@ -541,6 +572,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Creates a clone of the template item and adds it back to the inventory
+     * to replenish that item type
+     * @param index the index of the item
+     */
     public void replenishItem(int index){
         if(vendingMachine.getInventory().get(index).size()<10){
             Item existingItem = vendingMachine.getTemplate(index);
@@ -548,6 +584,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Dynamically changes the price of an object when called.
+     * @param index the index of the item
+     */
     public void changeItemPrice(int index){
         String input = JOptionPane.showInputDialog("New Price: ");
         int newPrice = Integer.parseInt(input);
@@ -556,6 +596,10 @@ public class Controller {
         }
     }
 
+    /**
+     * When a vending machine is created and finalized, this method saves the each unique item
+     * to an ArrayList, so that the item type can persist.
+     */
     public void saveItems(){
         Item template;
         for(int i = 0; i<vendingMachine.getInventory().size(); i++){
