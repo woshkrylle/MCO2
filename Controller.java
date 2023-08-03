@@ -542,8 +542,10 @@ public class Controller {
     }
 
     public void replenishItem(int index){
-        Item existingItem = vendingMachine.getTemplate(index);
-        vendingMachine.getInventory().get(index).add(existingItem);
+        if(vendingMachine.getInventory().get(index).size()<10){
+            Item existingItem = vendingMachine.getTemplate(index);
+            vendingMachine.getInventory().get(index).add(existingItem);
+        }
     }
 
     public void changeItemPrice(int index){

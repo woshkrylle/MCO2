@@ -470,64 +470,64 @@ public class MaintenanceView {
                     @Override
                     public void actionPerformed(ActionEvent e){
                         controller.changeItemPrice(6);
-                        changePriceButtons.get(6).setText(controller.getItemName(6)+": P"+controller.getItemPrice(7));
+                        changePriceButtons.get(6).setText(controller.getItemName(6)+": P"+controller.getItemPrice(6));
                     }
                 });
-                changePriceButtons.get(6).setText(controller.getItemName(6)+": P"+controller.getItemPrice(7));
+                changePriceButtons.get(6).setText(controller.getItemName(6)+": P"+controller.getItemPrice(6));
             case 6:
                 changePriceButtons.get(5).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
                         controller.changeItemPrice(5);
-                        changePriceButtons.get(5).setText(controller.getItemName(5)+": P"+controller.getItemPrice(7));
+                        changePriceButtons.get(5).setText(controller.getItemName(5)+": P"+controller.getItemPrice(5));
                     }
                 });
-                changePriceButtons.get(5).setText(controller.getItemName(5)+": P"+controller.getItemPrice(7));
+                changePriceButtons.get(5).setText(controller.getItemName(5)+": P"+controller.getItemPrice(5));
             case 5:
                 changePriceButtons.get(4).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
                         controller.changeItemPrice(4);
-                        changePriceButtons.get(4).setText(controller.getItemName(4)+": P"+controller.getItemPrice(7));
+                        changePriceButtons.get(4).setText(controller.getItemName(4)+": P"+controller.getItemPrice(4));
                     }
                 });
-                changePriceButtons.get(4).setText(controller.getItemName(4)+": P"+controller.getItemPrice(7));
+                changePriceButtons.get(4).setText(controller.getItemName(4)+": P"+controller.getItemPrice(4));
             case 4:
                 changePriceButtons.get(3).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
                         controller.changeItemPrice(3);
-                        changePriceButtons.get(3).setText(controller.getItemName(3)+": P"+controller.getItemPrice(7));
+                        changePriceButtons.get(3).setText(controller.getItemName(3)+": P"+controller.getItemPrice(3));
                     }
                 });
-                changePriceButtons.get(3).setText(controller.getItemName(3)+": P"+controller.getItemPrice(7));
+                changePriceButtons.get(3).setText(controller.getItemName(3)+": P"+controller.getItemPrice(3));
             case 3:
                 changePriceButtons.get(2).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
                         controller.changeItemPrice(2);
-                        changePriceButtons.get(2).setText(controller.getItemName(2)+": P"+controller.getItemPrice(7));
+                        changePriceButtons.get(2).setText(controller.getItemName(2)+": P"+controller.getItemPrice(2));
                     }
                 });
-                changePriceButtons.get(2).setText(controller.getItemName(2)+": P"+controller.getItemPrice(7));
+                changePriceButtons.get(2).setText(controller.getItemName(2)+": P"+controller.getItemPrice(2));
             case 2:
                 changePriceButtons.get(1).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
                         controller.changeItemPrice(1);
-                        changePriceButtons.get(1).setText(controller.getItemName(1)+": P"+controller.getItemPrice(7));
+                        changePriceButtons.get(1).setText(controller.getItemName(1)+": P"+controller.getItemPrice(1));
                     }
                 });
-                changePriceButtons.get(1).setText(controller.getItemName(1)+": P"+controller.getItemPrice(7));
+                changePriceButtons.get(1).setText(controller.getItemName(1)+": P"+controller.getItemPrice(1));
             case 1:
                 changePriceButtons.get(0).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
                         controller.changeItemPrice(0);
-                        changePriceButtons.get(0).setText(controller.getItemName(0)+": P"+controller.getItemPrice(7));
+                        changePriceButtons.get(0).setText(controller.getItemName(0)+": P"+controller.getItemPrice(0));
                     }
                 });
-                changePriceButtons.get(0).setText(controller.getItemName(0)+": P"+controller.getItemPrice(7));
+                changePriceButtons.get(0).setText(controller.getItemName(0)+": P"+controller.getItemPrice(0));
             case 0:
                 break;
         }

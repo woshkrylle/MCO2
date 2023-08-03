@@ -155,7 +155,7 @@ public class MainMenuView {
      * new unique item
      */
     private JPanel InitializeItemPanel(){
-        JPanel panel = new JPanel(new GridLayout(5,1));
+        JPanel panel = new JPanel(new GridLayout(4,1));
 
         JPanel pricePanel = new JPanel(new BorderLayout());
         JLabel priceLabel = new JLabel("Price:");

@@ -305,7 +305,7 @@ public class SpecialVMView {
                     @Override
                     public void actionPerformed(ActionEvent e){
                         controller.addItemToCart(4);
-                        customButtons.get(5).setText(controller.getItemName(4)+": P"+controller.getItemPrice(4) +" ("+controller.getItemCount(4)+"/10)");
+                        customButtons.get(4).setText(controller.getItemName(4)+": P"+controller.getItemPrice(4) +" ("+controller.getItemCount(4)+"/10)");
                         basePanel.revalidate();
                         basePanel.repaint();
                     }
