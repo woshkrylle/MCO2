@@ -3,6 +3,7 @@ public class VMModel{
     Denominations machineBalance;
     Denominations userChange;
     ArrayList<ArrayList<Item>> inventory = new ArrayList<>();
+    ArrayList<Item> templateHolder = new ArrayList<>();
     ArrayList<String> itemList = new ArrayList<>();
     int paymentTotal;
     int caloriesTotal;
@@ -37,6 +38,10 @@ public class VMModel{
 
     public int getCalories(){
         return this.caloriesTotal;
+    }
+
+    public Item getTemplate(int index){
+        return this.templateHolder.get(index);
     }
 
     public void setPayment(int amount){

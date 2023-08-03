@@ -134,6 +134,7 @@ public class MainMenuView {
         proceedButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
+                controller.saveItems();
                 controller.getCardLayout().show(controller.getFrame().getContentPane(), "Main Card");
             }
         });
@@ -178,13 +179,6 @@ public class MainMenuView {
         processTextField.setColumns(15);
         processPanel.add(processTextField, BorderLayout.EAST);
 
-        JPanel independencePanel = new JPanel(new BorderLayout());
-        JLabel independenceLabel = new JLabel("Ingredient can be sold on its own (True or False):");
-        independencePanel.add(independenceLabel, BorderLayout.WEST);
-        JTextField independenceTextField = new JTextField();
-        independenceTextField.setColumns(15);
-        independencePanel.add(independenceTextField, BorderLayout.EAST);
-
         JButton submitButton = new JButton("Submit");
         submitButton.addActionListener(new ActionListener(){
             @Override
@@ -192,8 +186,7 @@ public class MainMenuView {
                 int price = Integer.parseInt(priceTextField.getText());
                 int calories = Integer.parseInt(calorieTextField.getText());
                 String process = processTextField.getText();
-                boolean independence = Boolean.parseBoolean((independenceTextField.getText()).toLowerCase());
-                controller.addItemToInventory(price, calories, process, independence);
+                controller.addItemToInventory(price, calories, process);
                 controller.getCardLayout().show(controller.getFrame().getContentPane(), "Create Card");
             }
         });
@@ -201,7 +194,6 @@ public class MainMenuView {
         panel.add(pricePanel);
         panel.add(caloriePanel);
         panel.add(processPanel);
-        panel.add(independencePanel);
         panel.add(submitButton);
         panel.setVisible(true);
         return panel;

@@ -151,8 +151,7 @@ public class Controller {
             int price = vendingMachine.getInventory().get(index).get(0).getPrice();
             int calories = vendingMachine.getInventory().get(index).get(0).getCalories();
             String process = vendingMachine.getInventory().get(index).get(0).getProcess();
-            boolean independence = vendingMachine.getInventory().get(index).get(0).getIndependence();
-            Item existingItem = new Item(name, price, calories, process, independence);
+            Item existingItem = new Item(name, price, calories, process);
             vendingMachine.getInventory().get(index).add(existingItem);
             return true;
         }else{
@@ -167,11 +166,10 @@ public class Controller {
      * @param price 
      * @param calories
      * @param process
-     * @param independence
      */
-    public void addItemToInventory(int price, int calories, String process, boolean independence){
+    public void addItemToInventory(int price, int calories, String process){
         String name = vendingMachine.getItemList().get(vendingMachine.getItemList().size()-1);
-        Item newItem = new Item (name, price, calories, process, independence);
+        Item newItem = new Item (name, price, calories, process);
         ArrayList<Item> inventoryRow = new ArrayList<>();
         inventoryRow.add(newItem);
         vendingMachine.getInventory().add(inventoryRow);
@@ -540,6 +538,27 @@ public class Controller {
                 current = vendingMachine.getMachineBalance().getOne();
                 vendingMachine.getMachineBalance().setOne(current-1);
                 break;
+        }
+    }
+
+    public void replenishItem(int index){
+        Item existingItem = vendingMachine.getTemplate(index);
+        vendingMachine.getInventory().get(index).add(existingItem);
+    }
+
+    public void changeItemPrice(int index){
+        String input = JOptionPane.showInputDialog("New Price: ");
+        int newPrice = Integer.parseInt(input);
+        for(int i = 0; i<vendingMachine.getInventory().get(index).size(); i++){
+            vendingMachine.getInventory().get(index).get(i).setPrice(newPrice);
+        }
+    }
+
+    public void saveItems(){
+        Item template;
+        for(int i = 0; i<vendingMachine.getInventory().size(); i++){
+            template = vendingMachine.getInventory().get(i).get(0);
+            vendingMachine.templateHolder.add(template);
         }
     }
 }
