@@ -87,11 +87,6 @@ public class SpecialVMView {
         return panel;
     }
 
-    private void updateTotalMoney(int amount, JLabel label, int denomination){
-        int updatedMoney = controller.updateTotalPayment(amount, denomination);
-        label.setText("Total Payment: " + updatedMoney);
-    }
-
     public void updateItemButtons(){
         switch(controller.getSlotCount()){
             case 8:
@@ -277,111 +272,88 @@ public class SpecialVMView {
                     @Override
                     public void actionPerformed(ActionEvent e){
                         controller.addItemToCart(7);
-                        updateCustomButtons();
+                        customButtons.get(7).setText(controller.getItemName(7)+": P"+controller.getItemPrice(7) +" ("+controller.getItemCount(7)+"/10)");
                         basePanel.revalidate();
                         basePanel.repaint();
                     }
                 });
-                customButtons.get(7).setText(controller.getItemName(7)+": "+controller.getItemCount(7)+"/10");
+                customButtons.get(7).setText(controller.getItemName(7)+": P"+controller.getItemPrice(7) +" ("+controller.getItemCount(7)+"/10)");
             case 7:
                 customButtons.get(6).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
                         controller.addItemToCart(6);
-                        updateCustomButtons();
+                        customButtons.get(6).setText(controller.getItemName(6)+": P"+controller.getItemPrice(6) +" ("+controller.getItemCount(6)+"/10)");
                         basePanel.revalidate();
                         basePanel.repaint();
                     }
                 });
-                customButtons.get(6).setText(controller.getItemName(6)+": "+controller.getItemCount(6)+"/10");
+                customButtons.get(6).setText(controller.getItemName(6)+": P"+controller.getItemPrice(6) +" ("+controller.getItemCount(6)+"/10)");
             case 6:
                 customButtons.get(5).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
                         controller.addItemToCart(5);
-                        updateCustomButtons();
+                        customButtons.get(5).setText(controller.getItemName(5)+": P"+controller.getItemPrice(5) +" ("+controller.getItemCount(5)+"/10)");
                         basePanel.revalidate();
                         basePanel.repaint();
                     }
                 });
-                customButtons.get(5).setText(controller.getItemName(5)+": "+controller.getItemCount(5)+"/10");
+                customButtons.get(5).setText(controller.getItemName(5)+": P"+controller.getItemPrice(5) +" ("+controller.getItemCount(5)+"/10)");
             case 5:
                 customButtons.get(4).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
                         controller.addItemToCart(4);
-                        updateCustomButtons();
+                        customButtons.get(5).setText(controller.getItemName(4)+": P"+controller.getItemPrice(4) +" ("+controller.getItemCount(4)+"/10)");
                         basePanel.revalidate();
                         basePanel.repaint();
                     }
                 });
-                customButtons.get(4).setText(controller.getItemName(4)+": "+controller.getItemCount(4)+"/10");
+                customButtons.get(4).setText(controller.getItemName(4)+": P"+controller.getItemPrice(4) +" ("+controller.getItemCount(4)+"/10)");
             case 4:
                 customButtons.get(3).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
                         controller.addItemToCart(3);
-                        updateCustomButtons();
+                        customButtons.get(3).setText(controller.getItemName(3)+": P"+controller.getItemPrice(3) +" ("+controller.getItemCount(3)+"/10)");
                         basePanel.revalidate();
                         basePanel.repaint();
                     }
                 });
-                customButtons.get(3).setText(controller.getItemName(3)+": "+controller.getItemCount(3)+"/10");
+                customButtons.get(3).setText(controller.getItemName(3)+": P"+controller.getItemPrice(3) +" ("+controller.getItemCount(3)+"/10)");
             case 3:
                 customButtons.get(2).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
                         controller.addItemToCart(2);
-                        updateCustomButtons();
+                        customButtons.get(2).setText(controller.getItemName(2)+": P"+controller.getItemPrice(2) +" ("+controller.getItemCount(2)+"/10)");
                         basePanel.revalidate();
                         basePanel.repaint();
                     }
                 });
-                customButtons.get(2).setText(controller.getItemName(2)+": "+controller.getItemCount(2)+"/10");
+                customButtons.get(2).setText(controller.getItemName(2)+": P"+controller.getItemPrice(2) +" ("+controller.getItemCount(2)+"/10)");
             case 2:
                 customButtons.get(1).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
                         controller.addItemToCart(1);
-                        updateCustomButtons();
+                        customButtons.get(1).setText(controller.getItemName(1)+": P"+controller.getItemPrice(1) +" ("+controller.getItemCount(1)+"/10)");
                         basePanel.revalidate();
                         basePanel.repaint();
                     }
                 });
-                customButtons.get(1).setText(controller.getItemName(1)+": "+controller.getItemCount(1)+"/10");
+                customButtons.get(1).setText(controller.getItemName(1)+": P"+controller.getItemPrice(1) +" ("+controller.getItemCount(1)+"/10)");
             case 1:
                 customButtons.get(0).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
                         controller.addItemToCart(0);
-                        updateCustomButtons();
+                        customButtons.get(0).setText(controller.getItemName(0)+": P"+controller.getItemPrice(0) +" ("+controller.getItemCount(0)+"/10)");
                         basePanel.revalidate();
                         basePanel.repaint();
                     }
                 });
-                customButtons.get(0).setText(controller.getItemName(0)+": "+controller.getItemCount(0)+"/10");
-            case 0:
-                break;
-        }
-    }
-
-    public void updateCustomButtons(){
-        switch(controller.getSlotCount()){
-            case 8:
-                customButtons.get(7).setText(controller.getItemName(7)+": P"+controller.getItemPrice(7) +" ("+controller.getItemCount(7)+"/10)");
-            case 7:
-                customButtons.get(6).setText(controller.getItemName(6)+": P"+controller.getItemPrice(6) +" ("+controller.getItemCount(6)+"/10)");
-            case 6:
-                customButtons.get(5).setText(controller.getItemName(5)+": P"+controller.getItemPrice(5) +" ("+controller.getItemCount(5)+"/10)");
-            case 5:
-                customButtons.get(4).setText(controller.getItemName(4)+": P"+controller.getItemPrice(4) +" ("+controller.getItemCount(4)+"/10)");
-            case 4:
-                customButtons.get(3).setText(controller.getItemName(3)+": P"+controller.getItemPrice(3) +" ("+controller.getItemCount(3)+"/10)");
-            case 3:
-                customButtons.get(2).setText(controller.getItemName(2)+": P"+controller.getItemPrice(2) +" ("+controller.getItemCount(2)+"/10)");
-            case 2:
-                customButtons.get(1).setText(controller.getItemName(1)+": P"+controller.getItemPrice(1) +" ("+controller.getItemCount(1)+"/10)");
-            case 1:
                 customButtons.get(0).setText(controller.getItemName(0)+": P"+controller.getItemPrice(0) +" ("+controller.getItemCount(0)+"/10)");
             case 0:
                 break;

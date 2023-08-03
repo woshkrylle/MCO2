@@ -11,8 +11,8 @@ public class MaintenanceView {
                    collect,
                    changePrice;
     private Controller controller;
-    private ArrayList<JButton> buttonList = new ArrayList<>();
-    private ArrayList<JLabel> labelList = new ArrayList<>();
+    private ArrayList<JButton> replenishButtons = new ArrayList<>();
+    private ArrayList<JButton> changePriceButtons = new ArrayList<>();
 
 
 
@@ -84,9 +84,123 @@ public class MaintenanceView {
     }
 
     public JPanel replenishStockPanel(){
-        JPanel panel = new JPanel();
-        //need muna implement ung different types of menus
+        JPanel panel = new JPanel(new GridLayout(3, 3));
+
+        JButton item1 = new JButton("N/A");
+        JButton item2 = new JButton("N/A");
+        JButton item3 = new JButton("N/A");
+        JButton item4 = new JButton("N/A");
+        JButton item5 = new JButton("N/A");
+        JButton item6 = new JButton("N/A");
+        JButton item7 = new JButton("N/A");
+        JButton item8 = new JButton("N/A");
+        JButton exitButton = new JButton("Exit");
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                controller.getCardLayout().show(controller.getFrame().getContentPane(), "Maintenance Features Card");
+            }
+        });
+
+        replenishButtons.add(item1);
+        replenishButtons.add(item2);
+        replenishButtons.add(item3);
+        replenishButtons.add(item4);
+        replenishButtons.add(item5);
+        replenishButtons.add(item6);
+        replenishButtons.add(item7);
+        replenishButtons.add(item8);
+
+        panel.add(item1);
+        panel.add(item2);
+        panel.add(item3);
+        panel.add(item4);
+        panel.add(item5);
+        panel.add(item6);
+        panel.add(item7);
+        panel.add(item8);
+        panel.add(exitButton);
+        panel.setVisible(true);
         return panel;
+    }
+
+    public void initializeReplenishButtons(){
+        switch(controller.getSlotCount()){
+            case 8:
+                replenishButtons.get(7).addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        
+                        replenishButtons.get(7).setText(controller.getItemName(7)+": "+controller.getItemCount(7)+"/10");
+                    }
+                });
+                replenishButtons.get(7).setText(controller.getItemName(7)+": "+controller.getItemCount(7)+"/10");
+            case 7:
+                replenishButtons.get(6).addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        
+                        replenishButtons.get(6).setText(controller.getItemName(6)+": "+controller.getItemCount(6)+"/10");
+                    }
+                });
+                replenishButtons.get(6).setText(controller.getItemName(6)+": "+controller.getItemCount(6)+"/10");
+            case 6:
+                replenishButtons.get(5).addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        
+                        replenishButtons.get(5).setText(controller.getItemName(5)+": "+controller.getItemCount(5)+"/10");
+                    }
+                });
+                replenishButtons.get(5).setText(controller.getItemName(5)+": "+controller.getItemCount(5)+"/10");
+            case 5:
+                replenishButtons.get(4).addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        
+                        replenishButtons.get(4).setText(controller.getItemName(4)+": "+controller.getItemCount(4)+"/10");
+                    }
+                });
+                replenishButtons.get(4).setText(controller.getItemName(4)+": "+controller.getItemCount(4)+"/10");
+            case 4:
+                replenishButtons.get(3).addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        
+                        replenishButtons.get(3).setText(controller.getItemName(3)+": "+controller.getItemCount(3)+"/10");
+                    }
+                });
+                replenishButtons.get(3).setText(controller.getItemName(3)+": "+controller.getItemCount(3)+"/10");
+            case 3:
+                replenishButtons.get(2).addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        
+                        replenishButtons.get(2).setText(controller.getItemName(2)+": "+controller.getItemCount(2)+"/10");
+                    }
+                });
+                replenishButtons.get(2).setText(controller.getItemName(2)+": "+controller.getItemCount(2)+"/10");
+            case 2:
+                replenishButtons.get(1).addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        
+                        replenishButtons.get(1).setText(controller.getItemName(1)+": "+controller.getItemCount(1)+"/10");
+                    }
+                });
+                replenishButtons.get(1).setText(controller.getItemName(1)+": "+controller.getItemCount(1)+"/10");
+            case 1:
+                replenishButtons.get(0).addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        
+                        replenishButtons.get(0).setText(controller.getItemName(0)+": "+controller.getItemCount(0)+"/10");
+                    }
+                });
+                replenishButtons.get(0).setText(controller.getItemName(0)+": "+controller.getItemCount(0)+"/10");
+            case 0:
+                break;
+        }
     }
 
     public JPanel replenishBalancePanel(){
@@ -300,7 +414,120 @@ public class MaintenanceView {
     }
 
     public JPanel changePricePanel(){
-        JPanel panel = new JPanel();
+        JPanel panel = new JPanel(new GridLayout(3, 3));
+
+        JButton item1 = new JButton("N/A");
+        JButton item2 = new JButton("N/A");
+        JButton item3 = new JButton("N/A");
+        JButton item4 = new JButton("N/A");
+        JButton item5 = new JButton("N/A");
+        JButton item6 = new JButton("N/A");
+        JButton item7 = new JButton("N/A");
+        JButton item8 = new JButton("N/A");
+        JButton exitButton = new JButton("Exit");
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                controller.getCardLayout().show(controller.getFrame().getContentPane(), "Maintenance Features Card");
+            }
+        });
+        changePriceButtons.add(item1);
+        changePriceButtons.add(item2);
+        changePriceButtons.add(item3);
+        changePriceButtons.add(item4);
+        changePriceButtons.add(item5);
+        changePriceButtons.add(item6);
+        changePriceButtons.add(item7);
+        changePriceButtons.add(item8);
+        panel.add(item1);
+        panel.add(item2);
+        panel.add(item3);
+        panel.add(item4);
+        panel.add(item5);
+        panel.add(item6);
+        panel.add(item7);
+        panel.add(item8);
+        panel.add(exitButton);
+        panel.setVisible(true);
         return panel;
+    }
+
+    public void initializeChangePriceButtons(){
+        switch(controller.getSlotCount()){
+            case 8:
+                changePriceButtons.get(7).addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        
+                        changePriceButtons.get(7).setText(controller.getItemName(7)+": "+controller.getItemCount(7)+"/10");
+                    }
+                });
+                changePriceButtons.get(7).setText(controller.getItemName(7)+": "+controller.getItemCount(7)+"/10");
+            case 7:
+                changePriceButtons.get(6).addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        
+                        changePriceButtons.get(6).setText(controller.getItemName(6)+": "+controller.getItemCount(6)+"/10");
+                    }
+                });
+                changePriceButtons.get(6).setText(controller.getItemName(6)+": "+controller.getItemCount(6)+"/10");
+            case 6:
+                changePriceButtons.get(5).addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        
+                        changePriceButtons.get(5).setText(controller.getItemName(5)+": "+controller.getItemCount(5)+"/10");
+                    }
+                });
+                changePriceButtons.get(5).setText(controller.getItemName(5)+": "+controller.getItemCount(5)+"/10");
+            case 5:
+                changePriceButtons.get(4).addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        
+                        changePriceButtons.get(4).setText(controller.getItemName(4)+": "+controller.getItemCount(4)+"/10");
+                    }
+                });
+                changePriceButtons.get(4).setText(controller.getItemName(4)+": "+controller.getItemCount(4)+"/10");
+            case 4:
+                changePriceButtons.get(3).addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        
+                        changePriceButtons.get(3).setText(controller.getItemName(3)+": "+controller.getItemCount(3)+"/10");
+                    }
+                });
+                changePriceButtons.get(3).setText(controller.getItemName(3)+": "+controller.getItemCount(3)+"/10");
+            case 3:
+                changePriceButtons.get(2).addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        
+                        changePriceButtons.get(2).setText(controller.getItemName(2)+": "+controller.getItemCount(2)+"/10");
+                    }
+                });
+                changePriceButtons.get(2).setText(controller.getItemName(2)+": "+controller.getItemCount(2)+"/10");
+            case 2:
+                changePriceButtons.get(1).addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        
+                        changePriceButtons.get(1).setText(controller.getItemName(1)+": "+controller.getItemCount(1)+"/10");
+                    }
+                });
+                changePriceButtons.get(1).setText(controller.getItemName(1)+": "+controller.getItemCount(1)+"/10");
+            case 1:
+                changePriceButtons.get(0).addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e){
+                        
+                        changePriceButtons.get(0).setText(controller.getItemName(0)+": "+controller.getItemCount(0)+"/10");
+                    }
+                });
+                changePriceButtons.get(0).setText(controller.getItemName(0)+": "+controller.getItemCount(0)+"/10");
+            case 0:
+                break;
+        }
     }
 }
