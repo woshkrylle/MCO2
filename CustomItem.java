@@ -7,8 +7,15 @@ import java.util.*;
 *	@version 1.2
 */
 public class CustomItem {
-    private ArrayList<Item> cart = new ArrayList<>();
-    private int itemCount = 0, priceTotal = 0, caloriesTotal = 0;
+    private ArrayList<Item> cart;
+    private int itemCount, priceTotal, caloriesTotal;
+
+    public CustomItem(){
+        this.cart = new ArrayList<>();
+        this.itemCount = 0;
+        this.priceTotal = 0;
+        this.caloriesTotal = 0;
+    }
 /**
 *	addItem() adds the item to the ArrayList of type Item in the class
 *	@param item this is the item to be added on the array.

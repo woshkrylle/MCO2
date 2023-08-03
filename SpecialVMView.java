@@ -41,7 +41,7 @@ public class SpecialVMView {
             @Override
             public void actionPerformed(ActionEvent e){
                 controller.getCardLayout().show(controller.getFrame().getContentPane(), "Custom Card");
-                updateCustomButtons();
+                initializeCustomButtons();
                 basePanel.revalidate();
                 basePanel.repaint();
             }
@@ -254,8 +254,6 @@ public class SpecialVMView {
             public void actionPerformed(ActionEvent e){
                 controller.getCardLayout().show(controller.getFrame().getContentPane(), "Process Card");
                 controller.printProcesses(processLabels);
-                processPanel.revalidate();
-                processPanel.repaint();
             }
         });
 
@@ -278,7 +276,7 @@ public class SpecialVMView {
                 customButtons.get(7).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
-                        controller.addToCart(7);
+                        controller.addItemToCart(7);
                         updateCustomButtons();
                         basePanel.revalidate();
                         basePanel.repaint();
@@ -289,7 +287,7 @@ public class SpecialVMView {
                 customButtons.get(6).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
-                        controller.addToCart(6);
+                        controller.addItemToCart(6);
                         updateCustomButtons();
                         basePanel.revalidate();
                         basePanel.repaint();
@@ -300,7 +298,7 @@ public class SpecialVMView {
                 customButtons.get(5).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
-                        controller.addToCart(5);
+                        controller.addItemToCart(5);
                         updateCustomButtons();
                         basePanel.revalidate();
                         basePanel.repaint();
@@ -311,7 +309,7 @@ public class SpecialVMView {
                 customButtons.get(4).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
-                        controller.addToCart(4);
+                        controller.addItemToCart(4);
                         updateCustomButtons();
                         basePanel.revalidate();
                         basePanel.repaint();
@@ -322,7 +320,7 @@ public class SpecialVMView {
                 customButtons.get(3).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
-                        controller.addToCart(3);
+                        controller.addItemToCart(3);
                         updateCustomButtons();
                         basePanel.revalidate();
                         basePanel.repaint();
@@ -333,7 +331,7 @@ public class SpecialVMView {
                 customButtons.get(2).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
-                        controller.addToCart(2);
+                        controller.addItemToCart(2);
                         updateCustomButtons();
                         basePanel.revalidate();
                         basePanel.repaint();
@@ -344,7 +342,7 @@ public class SpecialVMView {
                 customButtons.get(1).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
-                        controller.addToCart(1);
+                        controller.addItemToCart(1);
                         updateCustomButtons();
                         basePanel.revalidate();
                         basePanel.repaint();
@@ -355,7 +353,7 @@ public class SpecialVMView {
                 customButtons.get(0).addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent e){
-                        controller.addToCart(0);
+                        controller.addItemToCart(0);
                         updateCustomButtons();
                         basePanel.revalidate();
                         basePanel.repaint();
@@ -390,6 +388,7 @@ public class SpecialVMView {
         }
     }
 
+    //Initiates the GUI for the 
     private JPanel processPanel()
     {
         JPanel panel = new JPanel(new GridLayout(8, 1));

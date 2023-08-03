@@ -8,7 +8,9 @@ public class MainMenuView {
     private Controller controller;
 
     /**
-     * 
+     * Creates a MainMenuView Object, which consists of three panels that
+     * will be shown for (a) The Main Menu,
+     * (b) Adding Items, (c) Creating New Items.
      * @param controller
      */
     public MainMenuView(Controller controller){
@@ -29,8 +31,15 @@ public class MainMenuView {
     private JPanel InitializeMainPanel(){
         JPanel panel = new JPanel(new GridLayout(3, 1));
 
+        //Button for "Create Vending Machine"
         JButton createButton = new JButton("Create a New Vending Machine");
         createButton.setFocusable(false);
+
+        /*
+         * Calls the createVM method in the controller class when pressed
+         * which in turn creates a new VMModel(or SpecialVMModel) Object
+         * and shifts you to the Add Item Panel
+         */
         createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
@@ -45,8 +54,14 @@ public class MainMenuView {
             }
         });
 
+        //Button for "Test Vending Machine
         JButton testButton = new JButton("Test Existing Vending Machine");
         testButton.setFocusable(false);
+
+        /*
+         * Shifts you to the panel that asks your input
+         * of moneyzzz
+         */
         testButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
@@ -54,6 +69,7 @@ public class MainMenuView {
             }
         });
         
+        //Button for exit; terminates the program
         JButton exitButton = new JButton("Exit");
         exitButton.setFocusable(false);
         exitButton.addActionListener(new ActionListener() {
@@ -71,10 +87,12 @@ public class MainMenuView {
     }
 
     /**
-     * 
+     * Initializes GUI that will show when creating a new
+     * vending machine.
      */
     private JPanel InitializeCreatePanel(){
         JPanel panel = new JPanel(new GridLayout(2,1));
+
 
         JPanel inventoryPanel = new JPanel();
         inventoryPanel.setLayout(new BoxLayout(inventoryPanel, BoxLayout.Y_AXIS));
@@ -131,6 +149,10 @@ public class MainMenuView {
         return panel;
     }
 
+    /**
+     * Initializes the GUI that will show when adding a
+     * new unique item
+     */
     private JPanel InitializeItemPanel(){
         JPanel panel = new JPanel(new GridLayout(5,1));
 
@@ -186,7 +208,10 @@ public class MainMenuView {
     }
 
     /**
-     * 
+     * Adds a label to the Create Vending Machine GUI
+     * when a new unique item is added
+     * @param name
+     * @param panel
      */
     public void addItemCounter(String name, JPanel panel){
         JLabel newLabel = new JLabel();
@@ -195,6 +220,12 @@ public class MainMenuView {
         itemLabels.add(newLabel);
     }
 
+    /**
+     * Updates the state of the labels that shows
+     * which items you have and how many of them
+     * there are
+     * @param name
+     */
     public void updateItemCounter(String name){
         int index = controller.getItemIndex(name);
         JLabel label = itemLabels.get(index);

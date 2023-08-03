@@ -1,6 +1,6 @@
 import java.util.*;
 public class SpecialVMModel extends VMModel {
-    private CustomItem customItem;
+    private CustomItem customItem = new CustomItem();;
     private ArrayList<String> processes = new ArrayList<>();
     public SpecialVMModel(Controller controller){
         super(controller);
