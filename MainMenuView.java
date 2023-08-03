@@ -11,7 +11,7 @@ public class MainMenuView {
      * Creates a MainMenuView Object, which consists of three panels that
      * will be shown for (a) The Main Menu,
      * (b) Adding Items, (c) Creating New Items.
-     * @param controller
+     * @param controller is the controller used for handling processess throughout VMC
      */
     public MainMenuView(Controller controller){
         this.controller = controller;
@@ -26,7 +26,9 @@ public class MainMenuView {
     }
 
     /**
-     * Initializes the GUI for the Main Menu
+     * Initializes the GUI for the Main Menu, which is a grid panel of 3 rows and 1 column, each panel has 
+     * buttons that each does a different action, one for Creating a Vending machine (createVM), one for
+     * testing (testVM), and another one to exit the interface.
      */
     private JPanel InitializeMainPanel(){
         JPanel panel = new JPanel(new GridLayout(3, 1));
@@ -88,7 +90,9 @@ public class MainMenuView {
 
     /**
      * Initializes GUI that will show when creating a new
-     * vending machine.
+     * vending machine. This panel has 2 rows, and the row above asks for the name, while the row below
+     * displays the list of items that were successfully made along with the item stocks
+     * 
      */
     private JPanel InitializeCreatePanel(){
         JPanel panel = new JPanel(new GridLayout(2,1));
@@ -152,7 +156,8 @@ public class MainMenuView {
 
     /**
      * Initializes the GUI that will show when adding a
-     * new unique item
+     * new unique item, makes the user input the Price, Calories, Process, and if it can go]
+     * Solo
      */
     private JPanel InitializeItemPanel(){
         JPanel panel = new JPanel(new GridLayout(4,1));
@@ -202,8 +207,8 @@ public class MainMenuView {
     /**
      * Adds a label to the Create Vending Machine GUI
      * when a new unique item is added
-     * @param name
-     * @param panel
+     * @param name name of the item already created
+     * @param panel JPanel of the create menu where this is added
      */
     public void addItemCounter(String name, JPanel panel){
         JLabel newLabel = new JLabel();
@@ -216,7 +221,7 @@ public class MainMenuView {
      * Updates the state of the labels that shows
      * which items you have and how many of them
      * there are
-     * @param name
+     * @param name name of the item, used for checking
      */
     public void updateItemCounter(String name){
         int index = controller.getItemIndex(name);
