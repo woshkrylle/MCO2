@@ -303,12 +303,4 @@ public class MaintenanceView {
         JPanel panel = new JPanel();
         return panel;
     }
-
-    public void updateReplenishMoneyButtons(){
-
-    }
-
-    public void updateCollectMoneyButtons(){
-        
-    }
 }
