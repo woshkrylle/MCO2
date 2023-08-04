@@ -4,7 +4,8 @@ import java.awt.event.*;
 import java.util.*;
 
 /**
- * 
+ * This class is one of the View classes of the GUI. RegularVMView is responsible for showing the
+ * main vending functionality of a regular vending machine object
  */
 public class RegularVMView {
     private Controller controller;
@@ -12,6 +13,10 @@ public class RegularVMView {
     private ArrayList<JButton> buttonList = new ArrayList<>();
     private ArrayList<JLabel> labelList = new ArrayList<>();
 
+    /**
+     * The constructor for the class. Initializes the state of the panels and adds them to the JFrame object
+     * @param controller
+     */
     public RegularVMView(Controller controller){
         this.controller = controller;
         this.vendingMain = vendingMainMenu();
@@ -23,6 +28,10 @@ public class RegularVMView {
         controller.getFrame().add(itemMenu, "Regular Items Card");
     }
 
+    /**
+     * Initializes the panel for the Main Menu of the regular vending machine
+     * @return the finalized panel
+     */
     private JPanel vendingMainMenu(){
         JPanel panel = new JPanel(new GridLayout(3,1));
 
@@ -58,6 +67,11 @@ public class RegularVMView {
         return panel;
     }
 
+    /**
+     * Initializes the panel for the Cash Menu of the regular vending machine
+     * that asks for the user input for money.
+     * @return the finalized panel
+     */
     private JPanel cashPanel(){
         JPanel panel = new JPanel(new GridLayout(6, 1));
 
@@ -181,6 +195,10 @@ public class RegularVMView {
         return panel;
     }
 
+    /**
+     * Initializes the panel for the item Menu of the regular vending machine
+     * @return the finalized panel
+     */
     private JPanel itemMenu(){
         JPanel panel = new JPanel(new GridLayout(3, 4));
 
@@ -232,13 +250,21 @@ public class RegularVMView {
         return panel;
     }
 
+    /**
+     * Updates the label that shows the total payment of the user
+     * @param amount the amount of money that is being added
+     * @param label the JLabel object to be updated
+     * @param denomination the denomination to be added
+     */
     private void updateTotalMoney(int amount, JLabel label, int denomination){
         int updatedMoney = controller.updateTotalPayment(amount, denomination);
         label.setText("Total Payment: " + updatedMoney);
     }
 
     
-
+    /**
+     * Initializes the functionality of the item buttons after their creation
+     */
     public void initializeItemButtons(){
         switch(controller.getSlotCount()){
             case 8:
@@ -343,6 +369,9 @@ public class RegularVMView {
         }
     }
 
+    /**
+     * Updates the state of the item buttons to reflect the current stock and price
+     */
     public void updateItemButtons(){
         switch(controller.getSlotCount()){
             case 8:
@@ -366,6 +395,10 @@ public class RegularVMView {
         }
     }
 
+    /**
+     * Updates the labels that keeps track of the change left and
+     * the total calories that is being bought
+     */
     public void updateLabels(){
         labelList.get(0).setText("Total Change: "+ controller.getPaymentTotal());
         labelList.get(1).setText("Total Calories: "+ controller.getCaloriesTotal());
