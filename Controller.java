@@ -74,6 +74,7 @@ public class Controller {
      * Instantiates a VMModel or SpecialVMModel based on user input
      * If a choice was created that is either 0 or 1 it will shift
      * the panel to the Create Vending Machine panel
+     * @param choice the choice between regular or special
      */
     public void createVM(int choice){
         if(choice == 0){
@@ -123,7 +124,7 @@ public class Controller {
 
     /**
      * Checks if an item already exists in the inventory/item list
-     * @param itemName
+     * @param itemName the name of the item
      * @return  true or false of whether the item exists
      */
     public boolean checkForItem(String itemName){
@@ -152,6 +153,7 @@ public class Controller {
      * This adds an already existing item to the inventory by "Cloning"
      * the first item of that type and adding the clone to the inventory
      * @param name the name of the item to be added
+     * @return whether the method was successful or not
      */
     public boolean addItemToInventory(String name){
         int index = vendingMachine.getItemList().indexOf(name);

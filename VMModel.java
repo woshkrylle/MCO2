@@ -1,4 +1,7 @@
 import java.util.*;
+/**
+ * The model class responsible for holding all of the program data
+ */
 public class VMModel{
     Denominations machineBalance;
     Denominations userChange;
@@ -9,6 +12,11 @@ public class VMModel{
     int caloriesTotal;
     private Controller controller;
 
+    /**
+     * The constructor method for this class. Initializes every attribute.
+     * Sets the default value of the balance denominations to 100
+     * Sets the default value of the user denominations to 0
+     */
     public VMModel(Controller controller){
         this.controller = controller;
         this.machineBalance = new Denominations(100,100,100,100,100,100,100,100);

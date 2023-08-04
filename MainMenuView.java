@@ -2,6 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+/**
+ * The View class responsible for the panels showing the main menu,
+ * and the menus for the creation of the vending machine
+ */
 public class MainMenuView {
     private JPanel mainPanel, createPanel, itemPanel;
     private ArrayList<JLabel> itemLabels = new ArrayList<>();

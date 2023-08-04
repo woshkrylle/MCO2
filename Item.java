@@ -72,7 +72,7 @@ public String getProcess(){
 
 /**
 *	setQuantity() assigns the number of stock this Item
-*	@return n assigned stock for the item
+*   @param n the quantity of the item
 */
     public void setQuantity(int n){
         this.quantity = n;

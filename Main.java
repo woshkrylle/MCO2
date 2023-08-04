@@ -8,6 +8,9 @@
  * - Replenishing stocks to max every time is also very arbitrary, in general please get the user input for most functions instead of hard coding values.
  */
 public class Main {
+    /**
+     * The main() method that will serve as the entry point for the program
+     */
     public static void main(String[] args){
         Controller controller = new Controller();
         

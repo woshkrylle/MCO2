@@ -3,7 +3,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
-
+/**
+ * The view class responsible for the panels concerning
+ * the maintenance features of the vending machine
+ */
 public class MaintenanceView {
     private JPanel menu,
                    restock,
@@ -15,7 +18,10 @@ public class MaintenanceView {
     private ArrayList<JButton> changePriceButtons = new ArrayList<>();
 
 
-
+    /**
+     * The constructor method for this class. Initializes every attribute
+     * @param controller the reference object to the controller
+     */
     public MaintenanceView(Controller controller){
         this.controller = controller;
         this.menu = menuPanel();
@@ -91,7 +97,7 @@ public class MaintenanceView {
     /**
      * replenishStockPanel() shows the same number of previously instantiated items. Upon clicking the buttons,
      * these items are restocked until the user sees fit.
-     * 
+     * @return the initialized panel
      */
     public JPanel replenishStockPanel(){
         JPanel panel = new JPanel(new GridLayout(3, 3));
@@ -220,7 +226,7 @@ public class MaintenanceView {
     /**
      * replenishBalancePanel() is almost the same as restocking items; although this is mroe focused on denominations
      * for use by the machine when dispensing change
-     * 
+     * @return the initialized panel
      */
     public JPanel replenishBalancePanel(){
         JPanel panel = new JPanel(new GridLayout(5, 1));
@@ -331,7 +337,7 @@ public class MaintenanceView {
     /**
      * collectMoneyPanel() creates the GUI which shows the amount of money gathered per denomination
      * then gets taken by the maintenance people.
-     * 
+     * @return the initialized panel
      */
     public JPanel collectMoneyPanel(){
         JPanel panel = new JPanel(new GridLayout(5, 1));
@@ -440,7 +446,7 @@ public class MaintenanceView {
     /**
      * changePricePanel() creates a GUI that allows the maintenance staff to change the price of an item and do the
      * same for every item in the same row in inventory
-     * 
+     * @return the initialized panel
      */
     public JPanel changePricePanel(){
         JPanel panel = new JPanel(new GridLayout(3, 3));

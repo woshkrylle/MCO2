@@ -18,7 +18,7 @@ public class SpecialVMView {
 
     /**
      * The constructor for the class. Initializes the state of the panels and adds them to the JFrame object
-     * @param controller
+     * @param controller the reference object for the controller
      */
     public SpecialVMView(Controller controller){
         this.controller = controller;
