@@ -1,8 +1,6 @@
 /**
 *	Denominations class stores how many money tthere are according to the denominations.
 *	The denominations are segmented from coins of five, ten, to bills of 20, 50, 100, 200, and 500
-*	@author Kurt Hugo and Nauj Agbayani
-*	@version 1.1
 */
 public class Denominations {
     private int fiveHundred = 0,
@@ -109,27 +107,66 @@ public class Denominations {
     }
 
   //getters
+    /**
+     * the getter method for the five hundred denomination
+     * @return the number of five hundred denomination
+     */
     public int getFiveHundred(){
         return this.fiveHundred;
     }
+
+    /**
+     * the getter method for the two hundred denomination
+     * @return the number of two hundred denomination
+     */
     public int getTwoHundred(){
         return this.twoHundred;
     }
+
+    /**
+     * the getter method for the one hundred denomination
+     * @return the number of one hundred denomination
+     */
     public int getOneHundred(){
         return this.oneHundred;
     }
+
+    /**
+     * the getter method for the fifty denomination
+     * @return the number of fifty denomination
+     */
     public int getFifty(){
         return this.fifty;
     }
+
+    /**
+     * the getter method for the twenty denomination
+     * @return the number of twenty denomination
+     */
     public int getTwenty(){
         return this.twenty;
     }
+
+    /**
+     * the getter method for the ten denomination
+     * @return the number of ten denomination
+     */
     public int getTen(){
         return this.ten;
-    }   
+    } 
+
+    /**
+     * the getter method for the five denomination
+     * @return the number of five denomination
+     */
     public int getFive(){
         return this.five;
     }
+
+    /**
+     * the getter method for the one denomination
+     * @return the number of one denomination
+     */
     public int getOne(){
         return this.one;
     }

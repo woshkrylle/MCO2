@@ -1,11 +1,9 @@
 import java.util.*;
-/**
-*	Transaction is a class that stores the operations related to one whole transaction
-*	in a vending machine. It calculates the items, total price, total calories, and change
-*	incurred through the instance.
-*	@author Kurt Justine Hugo and Nauj Agbayani
-*	@version 1.2
-*/
+/** 
+ * CustomItem keeps track of the data for the custom item.
+ * It keeps track of the list of items, the amount of items,
+ * the total price and the total calories.
+ */
 public class CustomItem {
     private ArrayList<Item> cart;
     private int itemCount, priceTotal, caloriesTotal;
@@ -16,6 +14,7 @@ public class CustomItem {
         this.priceTotal = 0;
         this.caloriesTotal = 0;
     }
+
 /**
 *	addItem() adds the item to the ArrayList of type Item in the class
 *	@param item this is the item to be added on the array.
@@ -25,19 +24,6 @@ public class CustomItem {
         this.itemCount++;
         this.priceTotal += item.getPrice();
         this.caloriesTotal += item.getCalories();
-    }
-/**
-*	findItem() looks for the item and its existence by going through the
-*	ArrayList of type Item and checking if the key name matches with the item name
-*	@param name String name of the item to be used as key
-*	@return item data type item that would be used/found
-*	@return null if data does not exist
-*/
-    public Item findItem(String name){
-        for(Item item : cart){
-            if(item.getName()==name) return item;
-        }
-        return null;
     }
 
 /**

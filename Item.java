@@ -1,8 +1,6 @@
 /**
 * Item stores the name of the item, its price, calories, and stock
 * as well as operations getting these prices and setting it
-* @authors Kurt Hugo and Nauj Agbayani
-* @version 1.1
 */
 public class Item {
     private String name, process;

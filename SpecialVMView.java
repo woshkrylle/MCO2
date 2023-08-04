@@ -241,8 +241,8 @@ public class SpecialVMView {
     }
 
     /**
-     * Initializes the panel of your Item Menu of thee
-     * @return
+     * Initializes the panel of the Item Menu of the Special vending machine
+     * @return the initialized panel
      */
     private JPanel baseItems()
     {
@@ -387,7 +387,10 @@ public class SpecialVMView {
         }
     }
 
-    //Initiates the GUI for the 
+    /**
+     * Initiates the GUI for the printing of the preparation process
+     * @return the initialized panel
+     */
     private JPanel processPanel()
     {
         JPanel panel = new JPanel(new GridLayout(8, 1));
