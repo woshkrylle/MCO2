@@ -16,6 +16,7 @@ public class VMModel{
         this.paymentTotal = 0;
     }
 
+    
     public Denominations getMachineBalance(){
         return this.machineBalance;
     }
